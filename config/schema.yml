@@ -1,0 +1,25 @@
+propel:
+  _attributes:
+    package: lib.model
+    defaultIdMethod: native
+
+  scope:
+    _attributes:
+    id:             ~
+    name:           { type: varchar, size: '128', required: true }
+    ip:             { type: varchar, size: '16', required: false }
+    created_at:     ~
+    updated_at:     ~
+    _uniques:
+      unique_name:  [name]
+
+  link:
+    _attributes:
+    id:           ~
+    scope_id:     { type: integer, size: '11', required: true, foreignTable: scope  , foreignReference: id, onDelete: cascade, onUpdate: restrict }
+    url:          { type: varchar, size: '255', required: true }
+    details:      { type: varchar, size: '64', required: false }
+    label:        { type: varchar, size: '32', required: false }
+    ip:           { type: varchar, size: '16', required: false }
+    created_at:   ~
+    updated_at:   ~

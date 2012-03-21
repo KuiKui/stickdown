@@ -1,0 +1,39 @@
+@import "_tolebo.less";
+
+@textColor: #556;
+
+body {
+  font-family: "Arial", sans-serif;
+  color: @textColor;
+
+  .navbar-inner {
+    .radius(0);
+    .gradient(@navBackgroundColorLight, @navBackgroundColorDark);
+
+    .container {
+      width: 940px;
+    }
+  }
+
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  form {
+    margin: 0;
+
+    label.control-label {
+      display: none;
+    }
+  
+    div.control-group {
+      float: left;
+      padding-right: 15px;
+      margin-bottom: 0;
+    }
+  }
+
+  p.info {
+    color: @textColor + #666;
+  }
+}
