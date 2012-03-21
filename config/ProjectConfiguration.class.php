@@ -7,6 +7,12 @@ class ProjectConfiguration extends sfProjectConfiguration
 {
   public function setup()
   {
-    $this->enablePlugins(array('lessPlugin', 'sfPropelORMPlugin'));
+    $this->enablePlugins(array(
+      'lessPlugin',
+      'sfPropelORMPlugin'
+    ));
+
+    // set default form decorator
+    sfWidgetFormSchema::setDefaultFormFormatterName('custom');
   }
 }
