@@ -3,14 +3,14 @@
 <div class="container">
   <div class="row">
     <div class="span12">
-      <h2><?php echo $scopeName; ?>, quickly save your stuff.</h2>
+      <h2><?php echo $scopeName; ?>, quickly stick your stuff.</h2>
       <form method="POST" class="form">
         <?php echo $form ?>
-        <input id="send" type="submit" value="Stick" class="btn-info" />
+        <input id="send" type="submit" value="Stick" class="btn-info" title="Stick my stuff" />
       </form>
       <?php if(count($links) > 0): ?>
         <table class="table">
-          <thead><tr><th>Link</th><th>Details</th><th>Date</th></tr></thead>
+          <thead><tr><th>Stuff</th><th>Details</th><th>Date</th></tr></thead>
           <tbody>
             <?php foreach($links as $link): ?>
             <tr>
