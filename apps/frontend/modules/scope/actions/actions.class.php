@@ -87,7 +87,7 @@ class scopeActions extends sfActions
       ->setScopeId($scope->getId())
       ->setUrl($this->form['url']->getValue())
       ->setIp($_SERVER["REMOTE_ADDR"])
-        ->save()
+      ->save()
     ;
 
     $url = $this->context->getRouting()->generate('scope', array('scope' => $scope->getName()));
