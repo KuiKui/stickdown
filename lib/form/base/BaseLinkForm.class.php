@@ -20,6 +20,7 @@ abstract class BaseLinkForm extends BaseFormPropel
       'details'    => new sfWidgetFormInputText(),
       'label'      => new sfWidgetFormInputText(),
       'ip'         => new sfWidgetFormInputText(),
+      'order'      => new sfWidgetFormInputText(),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
     ));
@@ -31,6 +32,7 @@ abstract class BaseLinkForm extends BaseFormPropel
       'details'    => new sfValidatorString(array('max_length' => 64, 'required' => false)),
       'label'      => new sfValidatorString(array('max_length' => 32, 'required' => false)),
       'ip'         => new sfValidatorString(array('max_length' => 16, 'required' => false)),
+      'order'      => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
       'created_at' => new sfValidatorDateTime(array('required' => false)),
       'updated_at' => new sfValidatorDateTime(array('required' => false)),
     ));

@@ -44,6 +44,7 @@ class LinkTableMap extends TableMap
 		$this->addColumn('DETAILS', 'Details', 'VARCHAR', false, 64, null);
 		$this->addColumn('LABEL', 'Label', 'VARCHAR', false, 32, null);
 		$this->addColumn('IP', 'Ip', 'VARCHAR', false, 16, null);
+		$this->addColumn('ORDER', 'Order', 'INTEGER', false, 11, null);
 		$this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
 		$this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
 		// validators

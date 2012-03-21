@@ -61,6 +61,12 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	protected $ip;
 
 	/**
+	 * The value for the order field.
+	 * @var        int
+	 */
+	protected $order;
+
+	/**
 	 * The value for the created_at field.
 	 * @var        string
 	 */
@@ -149,6 +155,16 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	public function getIp()
 	{
 		return $this->ip;
+	}
+
+	/**
+	 * Get the [order] column value.
+	 * 
+	 * @return     int
+	 */
+	public function getOrder()
+	{
+		return $this->order;
 	}
 
 	/**
@@ -352,6 +368,26 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	} // setIp()
 
 	/**
+	 * Set the value of [order] column.
+	 * 
+	 * @param      int $v new value
+	 * @return     Link The current object (for fluent API support)
+	 */
+	public function setOrder($v)
+	{
+		if ($v !== null) {
+			$v = (int) $v;
+		}
+
+		if ($this->order !== $v) {
+			$this->order = $v;
+			$this->modifiedColumns[] = LinkPeer::ORDER;
+		}
+
+		return $this;
+	} // setOrder()
+
+	/**
 	 * Sets the value of [created_at] column to a normalized version of the date/time value specified.
 	 * 
 	 * @param      mixed $v string, integer (timestamp), or DateTime value.
@@ -433,8 +469,9 @@ abstract class BaseLink extends BaseObject  implements Persistent
 			$this->details = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
 			$this->label = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
 			$this->ip = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-			$this->created_at = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
-			$this->updated_at = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+			$this->order = ($row[$startcol + 6] !== null) ? (int) $row[$startcol + 6] : null;
+			$this->created_at = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+			$this->updated_at = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -443,7 +480,7 @@ abstract class BaseLink extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 8; // 8 = LinkPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 9; // 9 = LinkPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Link object", $e);
@@ -728,6 +765,9 @@ abstract class BaseLink extends BaseObject  implements Persistent
 		if ($this->isColumnModified(LinkPeer::IP)) {
 			$modifiedColumns[':p' . $index++]  = '`IP`';
 		}
+		if ($this->isColumnModified(LinkPeer::ORDER)) {
+			$modifiedColumns[':p' . $index++]  = '`ORDER`';
+		}
 		if ($this->isColumnModified(LinkPeer::CREATED_AT)) {
 			$modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
 		}
@@ -762,6 +802,9 @@ abstract class BaseLink extends BaseObject  implements Persistent
 						break;
 					case '`IP`':
 						$stmt->bindValue($identifier, $this->ip, PDO::PARAM_STR);
+						break;
+					case '`ORDER`':
+						$stmt->bindValue($identifier, $this->order, PDO::PARAM_INT);
 						break;
 					case '`CREATED_AT`':
 						$stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
@@ -930,9 +973,12 @@ abstract class BaseLink extends BaseObject  implements Persistent
 				return $this->getIp();
 				break;
 			case 6:
-				return $this->getCreatedAt();
+				return $this->getOrder();
 				break;
 			case 7:
+				return $this->getCreatedAt();
+				break;
+			case 8:
 				return $this->getUpdatedAt();
 				break;
 			default:
@@ -970,8 +1016,9 @@ abstract class BaseLink extends BaseObject  implements Persistent
 			$keys[3] => $this->getDetails(),
 			$keys[4] => $this->getLabel(),
 			$keys[5] => $this->getIp(),
-			$keys[6] => $this->getCreatedAt(),
-			$keys[7] => $this->getUpdatedAt(),
+			$keys[6] => $this->getOrder(),
+			$keys[7] => $this->getCreatedAt(),
+			$keys[8] => $this->getUpdatedAt(),
 		);
 		if ($includeForeignObjects) {
 			if (null !== $this->aScope) {
@@ -1027,9 +1074,12 @@ abstract class BaseLink extends BaseObject  implements Persistent
 				$this->setIp($value);
 				break;
 			case 6:
-				$this->setCreatedAt($value);
+				$this->setOrder($value);
 				break;
 			case 7:
+				$this->setCreatedAt($value);
+				break;
+			case 8:
 				$this->setUpdatedAt($value);
 				break;
 		} // switch()
@@ -1062,8 +1112,9 @@ abstract class BaseLink extends BaseObject  implements Persistent
 		if (array_key_exists($keys[3], $arr)) $this->setDetails($arr[$keys[3]]);
 		if (array_key_exists($keys[4], $arr)) $this->setLabel($arr[$keys[4]]);
 		if (array_key_exists($keys[5], $arr)) $this->setIp($arr[$keys[5]]);
-		if (array_key_exists($keys[6], $arr)) $this->setCreatedAt($arr[$keys[6]]);
-		if (array_key_exists($keys[7], $arr)) $this->setUpdatedAt($arr[$keys[7]]);
+		if (array_key_exists($keys[6], $arr)) $this->setOrder($arr[$keys[6]]);
+		if (array_key_exists($keys[7], $arr)) $this->setCreatedAt($arr[$keys[7]]);
+		if (array_key_exists($keys[8], $arr)) $this->setUpdatedAt($arr[$keys[8]]);
 	}
 
 	/**
@@ -1081,6 +1132,7 @@ abstract class BaseLink extends BaseObject  implements Persistent
 		if ($this->isColumnModified(LinkPeer::DETAILS)) $criteria->add(LinkPeer::DETAILS, $this->details);
 		if ($this->isColumnModified(LinkPeer::LABEL)) $criteria->add(LinkPeer::LABEL, $this->label);
 		if ($this->isColumnModified(LinkPeer::IP)) $criteria->add(LinkPeer::IP, $this->ip);
+		if ($this->isColumnModified(LinkPeer::ORDER)) $criteria->add(LinkPeer::ORDER, $this->order);
 		if ($this->isColumnModified(LinkPeer::CREATED_AT)) $criteria->add(LinkPeer::CREATED_AT, $this->created_at);
 		if ($this->isColumnModified(LinkPeer::UPDATED_AT)) $criteria->add(LinkPeer::UPDATED_AT, $this->updated_at);
 
@@ -1150,6 +1202,7 @@ abstract class BaseLink extends BaseObject  implements Persistent
 		$copyObj->setDetails($this->getDetails());
 		$copyObj->setLabel($this->getLabel());
 		$copyObj->setIp($this->getIp());
+		$copyObj->setOrder($this->getOrder());
 		$copyObj->setCreatedAt($this->getCreatedAt());
 		$copyObj->setUpdatedAt($this->getUpdatedAt());
 		if ($makeNew) {
@@ -1256,6 +1309,7 @@ abstract class BaseLink extends BaseObject  implements Persistent
 		$this->details = null;
 		$this->label = null;
 		$this->ip = null;
+		$this->order = null;
 		$this->created_at = null;
 		$this->updated_at = null;
 		$this->alreadyInSave = false;

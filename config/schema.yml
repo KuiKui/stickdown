@@ -21,5 +21,6 @@ propel:
     details:      { type: varchar, size: '64', required: false }
     label:        { type: varchar, size: '32', required: false }
     ip:           { type: varchar, size: '16', required: false }
+    order:        { type: integer, size: '11', required: false }
     created_at:   ~
     updated_at:   ~

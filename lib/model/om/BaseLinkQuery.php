@@ -12,6 +12,7 @@
  * @method     LinkQuery orderByDetails($order = Criteria::ASC) Order by the details column
  * @method     LinkQuery orderByLabel($order = Criteria::ASC) Order by the label column
  * @method     LinkQuery orderByIp($order = Criteria::ASC) Order by the ip column
+ * @method     LinkQuery orderByOrder($order = Criteria::ASC) Order by the order column
  * @method     LinkQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
  * @method     LinkQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
  *
@@ -21,6 +22,7 @@
  * @method     LinkQuery groupByDetails() Group by the details column
  * @method     LinkQuery groupByLabel() Group by the label column
  * @method     LinkQuery groupByIp() Group by the ip column
+ * @method     LinkQuery groupByOrder() Group by the order column
  * @method     LinkQuery groupByCreatedAt() Group by the created_at column
  * @method     LinkQuery groupByUpdatedAt() Group by the updated_at column
  *
@@ -41,6 +43,7 @@
  * @method     Link findOneByDetails(string $details) Return the first Link filtered by the details column
  * @method     Link findOneByLabel(string $label) Return the first Link filtered by the label column
  * @method     Link findOneByIp(string $ip) Return the first Link filtered by the ip column
+ * @method     Link findOneByOrder(int $order) Return the first Link filtered by the order column
  * @method     Link findOneByCreatedAt(string $created_at) Return the first Link filtered by the created_at column
  * @method     Link findOneByUpdatedAt(string $updated_at) Return the first Link filtered by the updated_at column
  *
@@ -50,6 +53,7 @@
  * @method     array findByDetails(string $details) Return Link objects filtered by the details column
  * @method     array findByLabel(string $label) Return Link objects filtered by the label column
  * @method     array findByIp(string $ip) Return Link objects filtered by the ip column
+ * @method     array findByOrder(int $order) Return Link objects filtered by the order column
  * @method     array findByCreatedAt(string $created_at) Return Link objects filtered by the created_at column
  * @method     array findByUpdatedAt(string $updated_at) Return Link objects filtered by the updated_at column
  *
@@ -140,7 +144,7 @@ abstract class BaseLinkQuery extends ModelCriteria
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `SCOPE_ID`, `URL`, `DETAILS`, `LABEL`, `IP`, `CREATED_AT`, `UPDATED_AT` FROM `link` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `SCOPE_ID`, `URL`, `DETAILS`, `LABEL`, `IP`, `ORDER`, `CREATED_AT`, `UPDATED_AT` FROM `link` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -403,6 +407,46 @@ abstract class BaseLinkQuery extends ModelCriteria
 			}
 		}
 		return $this->addUsingAlias(LinkPeer::IP, $ip, $comparison);
+	}
+
+	/**
+	 * Filter the query on the order column
+	 *
+	 * Example usage:
+	 * <code>
+	 * $query->filterByOrder(1234); // WHERE order = 1234
+	 * $query->filterByOrder(array(12, 34)); // WHERE order IN (12, 34)
+	 * $query->filterByOrder(array('min' => 12)); // WHERE order > 12
+	 * </code>
+	 *
+	 * @param     mixed $order The value to use as filter.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    LinkQuery The current query, for fluid interface
+	 */
+	public function filterByOrder($order = null, $comparison = null)
+	{
+		if (is_array($order)) {
+			$useMinMax = false;
+			if (isset($order['min'])) {
+				$this->addUsingAlias(LinkPeer::ORDER, $order['min'], Criteria::GREATER_EQUAL);
+				$useMinMax = true;
+			}
+			if (isset($order['max'])) {
+				$this->addUsingAlias(LinkPeer::ORDER, $order['max'], Criteria::LESS_EQUAL);
+				$useMinMax = true;
+			}
+			if ($useMinMax) {
+				return $this;
+			}
+			if (null === $comparison) {
+				$comparison = Criteria::IN;
+			}
+		}
+		return $this->addUsingAlias(LinkPeer::ORDER, $order, $comparison);
 	}
 
 	/**

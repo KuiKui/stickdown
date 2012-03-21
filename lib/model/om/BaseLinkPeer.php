@@ -26,13 +26,13 @@ abstract class BaseLinkPeer {
 	const TM_CLASS = 'LinkTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 8;
+	const NUM_COLUMNS = 9;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 8;
+	const NUM_HYDRATE_COLUMNS = 9;
 
 	/** the column name for the ID field */
 	const ID = 'link.ID';
@@ -51,6 +51,9 @@ abstract class BaseLinkPeer {
 
 	/** the column name for the IP field */
 	const IP = 'link.IP';
+
+	/** the column name for the ORDER field */
+	const ORDER = 'link.ORDER';
 
 	/** the column name for the CREATED_AT field */
 	const CREATED_AT = 'link.CREATED_AT';
@@ -77,12 +80,12 @@ abstract class BaseLinkPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'ScopeId', 'Url', 'Details', 'Label', 'Ip', 'CreatedAt', 'UpdatedAt', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'scopeId', 'url', 'details', 'label', 'ip', 'createdAt', 'updatedAt', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::SCOPE_ID, self::URL, self::DETAILS, self::LABEL, self::IP, self::CREATED_AT, self::UPDATED_AT, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'SCOPE_ID', 'URL', 'DETAILS', 'LABEL', 'IP', 'CREATED_AT', 'UPDATED_AT', ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'scope_id', 'url', 'details', 'label', 'ip', 'created_at', 'updated_at', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'ScopeId', 'Url', 'Details', 'Label', 'Ip', 'Order', 'CreatedAt', 'UpdatedAt', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'scopeId', 'url', 'details', 'label', 'ip', 'order', 'createdAt', 'updatedAt', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::SCOPE_ID, self::URL, self::DETAILS, self::LABEL, self::IP, self::ORDER, self::CREATED_AT, self::UPDATED_AT, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'SCOPE_ID', 'URL', 'DETAILS', 'LABEL', 'IP', 'ORDER', 'CREATED_AT', 'UPDATED_AT', ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'scope_id', 'url', 'details', 'label', 'ip', 'order', 'created_at', 'updated_at', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
 	);
 
 	/**
@@ -92,12 +95,12 @@ abstract class BaseLinkPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'ScopeId' => 1, 'Url' => 2, 'Details' => 3, 'Label' => 4, 'Ip' => 5, 'CreatedAt' => 6, 'UpdatedAt' => 7, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'scopeId' => 1, 'url' => 2, 'details' => 3, 'label' => 4, 'ip' => 5, 'createdAt' => 6, 'updatedAt' => 7, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::SCOPE_ID => 1, self::URL => 2, self::DETAILS => 3, self::LABEL => 4, self::IP => 5, self::CREATED_AT => 6, self::UPDATED_AT => 7, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'SCOPE_ID' => 1, 'URL' => 2, 'DETAILS' => 3, 'LABEL' => 4, 'IP' => 5, 'CREATED_AT' => 6, 'UPDATED_AT' => 7, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'scope_id' => 1, 'url' => 2, 'details' => 3, 'label' => 4, 'ip' => 5, 'created_at' => 6, 'updated_at' => 7, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'ScopeId' => 1, 'Url' => 2, 'Details' => 3, 'Label' => 4, 'Ip' => 5, 'Order' => 6, 'CreatedAt' => 7, 'UpdatedAt' => 8, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'scopeId' => 1, 'url' => 2, 'details' => 3, 'label' => 4, 'ip' => 5, 'order' => 6, 'createdAt' => 7, 'updatedAt' => 8, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::SCOPE_ID => 1, self::URL => 2, self::DETAILS => 3, self::LABEL => 4, self::IP => 5, self::ORDER => 6, self::CREATED_AT => 7, self::UPDATED_AT => 8, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'SCOPE_ID' => 1, 'URL' => 2, 'DETAILS' => 3, 'LABEL' => 4, 'IP' => 5, 'ORDER' => 6, 'CREATED_AT' => 7, 'UPDATED_AT' => 8, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'scope_id' => 1, 'url' => 2, 'details' => 3, 'label' => 4, 'ip' => 5, 'order' => 6, 'created_at' => 7, 'updated_at' => 8, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
 	);
 
 	/**
@@ -175,6 +178,7 @@ abstract class BaseLinkPeer {
 			$criteria->addSelectColumn(LinkPeer::DETAILS);
 			$criteria->addSelectColumn(LinkPeer::LABEL);
 			$criteria->addSelectColumn(LinkPeer::IP);
+			$criteria->addSelectColumn(LinkPeer::ORDER);
 			$criteria->addSelectColumn(LinkPeer::CREATED_AT);
 			$criteria->addSelectColumn(LinkPeer::UPDATED_AT);
 		} else {
@@ -184,6 +188,7 @@ abstract class BaseLinkPeer {
 			$criteria->addSelectColumn($alias . '.DETAILS');
 			$criteria->addSelectColumn($alias . '.LABEL');
 			$criteria->addSelectColumn($alias . '.IP');
+			$criteria->addSelectColumn($alias . '.ORDER');
 			$criteria->addSelectColumn($alias . '.CREATED_AT');
 			$criteria->addSelectColumn($alias . '.UPDATED_AT');
 		}
