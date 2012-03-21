@@ -15,28 +15,25 @@ class LinkForm extends BaseLinkForm
     $this->setWidgets(array(
       'scope_id'    => new sfWidgetFormInputHidden(array(), array()),
       'scope_name'  => new sfWidgetFormInputHidden(array(), array()),
-      'url'         => new sfWidgetFormInput(array(), array('placeholder' => 'What blah blah ?')),
-      'details'     => new sfWidgetFormInput(array(), array('placeholder' => 'Quelques détails ?'))
+      'url'         => new sfWidgetFormInput(array(), array('placeholder' => 'Your stuff')),
+      'details'     => new sfWidgetFormInput(array(), array('placeholder' => 'Details'))
     ));
 
     $this->widgetSchema->setLabels(array('url' => null, 'details' => null));
     $this->widgetSchema->setNameFormat('link[%s]');
-    $this->widgetSchema->setFormFormatterName('custom');
 
     $this->setValidators(array(
       'url' => new sfValidatorString(
-        array('required' => true, 'min_length' => 4, 'max_length' => 255),
+        array('required' => true, 'max_length' => 255),
         array(
           'required' => " is required",
-          'min_length' => " trop petit",
-          'max_length' => " trop grand"
+          'max_length' => " too long"
         )
       ),
       'details' => new sfValidatorString(
-        array('required' => false, 'min_length' => 4, 'max_length' => 64),
+        array('required' => false, 'max_length' => 64),
         array(
-           'min_length' => " trop petit",
-           'max_length' => " trop grand"
+           'max_length' => "too long"
         )
       )
     ));
