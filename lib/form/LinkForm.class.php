@@ -13,7 +13,6 @@ class LinkForm extends BaseLinkForm
   {
     $this->useFields(array('url', 'details'));
     $this->setWidgets(array(
-      'scope_id'    => new sfWidgetFormInputHidden(array(), array()),
       'scope_name'  => new sfWidgetFormInputHidden(array(), array()),
       'url'         => new sfWidgetFormInput(array(), array('placeholder' => 'Your stuff')),
       'details'     => new sfWidgetFormInput(array(), array('placeholder' => 'Details'))
@@ -26,14 +25,14 @@ class LinkForm extends BaseLinkForm
       'url' => new sfValidatorString(
         array('required' => true, 'max_length' => 255),
         array(
-          'required' => " is required",
-          'max_length' => " too long"
+          'required' => "is required",
+          'max_length' => "is too long"
         )
       ),
       'details' => new sfValidatorString(
         array('required' => false, 'max_length' => 64),
         array(
-           'max_length' => "too long"
+           'max_length' => "is too long"
         )
       )
     ));

@@ -21,7 +21,7 @@ class scopeActions extends sfActions
 
     // Création et configuration du formulaire
     $this->form = new LinkForm();
-    $this->configureLinkForm($request);
+    $this->form->setDefault('scope_name', $this->scopeName);
     $this->links = array();
 
     if($request->isMethod('get'))
@@ -48,21 +48,11 @@ class scopeActions extends sfActions
     }
   }
 
-  public function configureLinkForm(sfWebRequest $request)
-  {
-    // Passage des paramètres cachés correspondant au scope
-    if($this->currentScope)
-    {
-      $this->form->setDefault('scope_id', $this->currentScope->getId());
-    }
-    $this->form->setDefault('scope_name', $this->scopeName);
-  }
-
   public function saveLink(sfWebRequest $request)
   {
     // Création du scope s'il n'existe pas
     $scope = ScopeQuery::create()
-      ->filterById($this->form['scope_id']->getValue())
+      ->filterByName($this->form['scope_name']->getValue())
       ->findOne()
     ;
 
