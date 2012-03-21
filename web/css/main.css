@@ -1,4 +1,13 @@
-body {
+@font-face {
+  font-family: 'Gochi Hand';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Gochi Hand'), local('GochiHand-Regular'), url('../fonts/gochi.woff') format('woff');
+}
+
+html, body {
+  position: relative;
+  min-height: 100%;
   font-family:"Arial", sans-serif;
   color:#555566;
 }
@@ -22,3 +31,21 @@ body form div.control-group {
   margin-bottom:0;
 }
 body p.info { color:#bbbbcc; }
+.navbar .brand {
+  padding: 8px 20px 8px;
+  font-family: 'Gochi Hand';
+  font-size: 28px;
+}
+
+input, textarea, select{ margin-bottom: 4px; }
+.control-group .controls { height: 55px; }
+.control-group .controls .help-inline {
+  background: url('../images/error-arrow.png') no-repeat;
+  margin-left: 4px;
+  padding-left: 22px;
+}
+
+.control-group .controls .help-inline {
+  display: block;
+  color: #a11c20;
+}

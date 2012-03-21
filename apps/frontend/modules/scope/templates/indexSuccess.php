@@ -3,8 +3,8 @@
 <div class="container">
   <div class="row">
     <div class="span12">
-      <h2><?php echo $scopeName; ?>, quickly save your links.</h2>
-      <form method="POST">
+      <h2><?php echo $scopeName; ?>, quickly save your stuff.</h2>
+      <form method="POST" class="form">
         <?php echo $form ?>
         <input id="send" type="submit" value="Stick" class="btn-info" />
       </form>

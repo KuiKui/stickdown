@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="span12">
-        <h2>Quickly save your links.</h2>
+        <h2>Quickly save your stuff.</h2>
       </div>
     </div>
   </div>
