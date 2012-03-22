@@ -59,10 +59,6 @@ body {
   form {
     margin: 0;
 
-    label.control-label {
-      display: none;
-    }
-
     div.control-group {
       float: left;
       padding-right: 15px;
@@ -70,11 +66,6 @@ body {
 
       .controls {
         height: 55px;
-
-        #link_url {
-          margin-bottom: 4px;
-          width: 400px;
-        }
 
         .help-inline {
           background: url('../images/error-arrow.png') no-repeat;
@@ -92,6 +83,26 @@ body {
 
     h2 {
       margin: 0 0 40px 0;
+    }
+
+    form {
+      margin-bottom: 25px;
+
+      #scope_name {
+        margin-bottom: 4px;
+      }
+
+      label.control-label {
+        display: inline;
+      }
+
+      .controls {
+        display: inline;
+
+        .help-inline {
+          margin-left: 100px;
+        }
+      }
     }
 
     .features {
@@ -119,6 +130,17 @@ body {
   #scope {
     h2 {
       margin-bottom: 20px;
+    }
+
+    form {
+      label.control-label {
+        display: none;
+      }
+
+      #link_url {
+        margin-bottom: 4px;
+        width: 400px;
+      }
     }
 
     p.info {

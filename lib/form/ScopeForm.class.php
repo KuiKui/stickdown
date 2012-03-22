@@ -14,7 +14,7 @@ class ScopeForm extends BaseScopeForm
     $this->useFields(array('name'));
     $this->setWidgets(array('name' => new sfWidgetFormInput(array(), array('placeholder' => 'select your zone'))));
 
-    $this->widgetSchema->setLabels(array('name' => null));
+    $this->widgetSchema->setLabels(array('name' => 'Choose your zone'));
     $this->widgetSchema->setNameFormat('scope[%s]');
 
     $this->setValidators(array(
