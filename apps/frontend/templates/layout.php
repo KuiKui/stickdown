@@ -16,9 +16,8 @@
       <div class="container">
         <a id="brand" title="Stickdown, quickly stick your stuff." class="brand" href="/"><strong>Stick</strong>down</a>
         <ul class="nav pull-right">
-          <li><a title="Twitter" href="http://twitter.com/deuteron">Twitter</a></li>
+          <li><a title="Twitter" href="http://twitter.com/deuteronsoft">Twitter</a></li>
           <li><a title="Blog" href="http://deuteron.fr/blog">Blog</a></li>
-          <li><a title="Contact" href="mailto:contact@deuteron.fr">Contact</a></li>
         </ul>
         </div>
       </div>
