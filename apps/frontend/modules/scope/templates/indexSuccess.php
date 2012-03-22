@@ -14,7 +14,7 @@
           <tbody>
             <?php foreach($links as $link): ?>
             <tr>
-              <td><a href="<?php echo $link->getUrl() ?>"><?php echo $link->getUrl() ?></a></td>
+              <td><?php echo link_to_if(preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $link->getUrl()), $link->getUrl(), $link->getUrl());?></td>
               <td><?php echo $link->getDetails() ?></td>
               <td><?php echo $link->getCreatedAt('d/m/Y H:i:s') ?></td>
             </tr>
