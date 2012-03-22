@@ -17,6 +17,21 @@ class homeActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
+    $this->form = new ScopeForm();
 
+    if($request->isMethod('get'))
+    {
+      
+    }
+    elseif($request->isMethod('post'))
+    {
+      $this->form->bind($request->getParameter($this->form->getName()));
+      if ($this->form->isValid())
+      {
+        $url = $this->context->getRouting()->generate('scope', array('scope' => $this->form['name']->getValue()));
+        $url = str_replace('index.php/', '', $url);
+        $this->redirect($url);
+      }
+    }
   }
 }

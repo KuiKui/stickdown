@@ -2,6 +2,10 @@
   <div class="row">
     <div class="span12">
       <h2>Quickly stick your stuff.</h2>
+      <form method="post" class="form">
+        <?php echo $form ?>
+        <input id="send" type="submit" value="Go" class="btn-info" title="Go to my zone" />
+      </form>
     </div>
   </div>
   <div class="features row">

@@ -46,6 +46,25 @@ body .navbar .navbar-inner .container ul.nav li a:hover {
   -webkit-text-shadow:1px 1px 7px rgba(255,255,255,0.5);
   -moz-text-shadow:1px 1px 7px rgba(255,255,255,0.5);
 }
+body form { margin:0; }
+body form label.control-label { display:none; }
+body form div.control-group {
+  float:left;
+  padding-right:15px;
+  margin-bottom:0;
+}
+body form div.control-group .controls { height:55px; }
+body form div.control-group .controls #link_url {
+  margin-bottom:4px;
+  width:400px;
+}
+body form div.control-group .controls .help-inline {
+  background:url('../images/error-arrow.png') no-repeat;
+  margin-left:4px;
+  padding-left:22px;
+  display:block;
+  color:#a11c20;
+}
 body #home {
   text-shadow:1px 1px 1px rgba(255,255,255,0.4);
   -webkit-text-shadow:1px 1px 1px rgba(255,255,255,0.4);
@@ -67,25 +86,6 @@ body #home .features .feature p strong {
   -moz-border-radius:3px;
 }
 body #scope h2 { margin-bottom:20px; }
-body #scope form { margin:0; }
-body #scope form label.control-label { display:none; }
-body #scope form div.control-group {
-  float:left;
-  padding-right:15px;
-  margin-bottom:0;
-}
-body #scope form div.control-group .controls { height:55px; }
-body #scope form div.control-group .controls #link_url {
-  margin-bottom:4px;
-  width:400px;
-}
-body #scope form div.control-group .controls .help-inline {
-  background:url('../images/error-arrow.png') no-repeat;
-  margin-left:4px;
-  padding-left:22px;
-  display:block;
-  color:#a11c20;
-}
 body #scope p.info { color:#bbbbcc; }
 body #footer {
   text-align:center;

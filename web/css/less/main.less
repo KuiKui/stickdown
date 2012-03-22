@@ -56,6 +56,37 @@ body {
     }
   }
 
+  form {
+    margin: 0;
+
+    label.control-label {
+      display: none;
+    }
+
+    div.control-group {
+      float: left;
+      padding-right: 15px;
+      margin-bottom: 0;
+
+      .controls {
+        height: 55px;
+
+        #link_url {
+          margin-bottom: 4px;
+          width: 400px;
+        }
+
+        .help-inline {
+          background: url('../images/error-arrow.png') no-repeat;
+          margin-left: 4px;
+          padding-left: 22px;
+          display: block;
+          color: #a11c20;
+        }
+      }
+    }
+  }
+
   #home {
     .text-shadow(1px, 1px, 1px, 0.4);
 
@@ -88,37 +119,6 @@ body {
   #scope {
     h2 {
       margin-bottom: 20px;
-    }
-  
-    form {
-      margin: 0;
-  
-      label.control-label {
-        display: none;
-      }
-  
-      div.control-group {
-        float: left;
-        padding-right: 15px;
-        margin-bottom: 0;
-  
-        .controls {
-          height: 55px;
-  
-          #link_url {
-            margin-bottom: 4px;
-            width: 400px;
-          }
-  
-          .help-inline {
-            background: url('../images/error-arrow.png') no-repeat;
-            margin-left: 4px;
-            padding-left: 22px;
-            display: block;
-            color: #a11c20;
-          }
-        }
-      }
     }
 
     p.info {
