@@ -14,7 +14,7 @@
   <div class="navbar">
     <div class="navbar-inner">
       <div class="container">
-        <a id="brand" title="Stickdown, quickly stick your stuff." class="brand" href="/"><strong>Stick</strong>down</a>
+        <a id="brand" title="Stickdown.me, quickly stick your stuff." class="brand" href="/"><strong>Stick</strong>down.me</a>
         <ul class="nav pull-right">
           <li><a title="Twitter" href="http://twitter.com/deuteronsoft">Twitter</a></li>
           <li><a title="Blog" href="http://deuteron.fr/blog">Blog</a></li>

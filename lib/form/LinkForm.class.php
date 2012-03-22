@@ -15,7 +15,7 @@ class LinkForm extends BaseLinkForm
     $this->setWidgets(array(
       'scope_name'  => new sfWidgetFormInputHidden(array(), array()),
       'url'         => new sfWidgetFormInput(array(), array('placeholder' => 'Your stuff')),
-      'details'     => new sfWidgetFormInput(array(), array('placeholder' => 'Details'))
+      'details'     => new sfWidgetFormInput(array(), array('placeholder' => 'Details (optional)'))
     ));
 
     $this->widgetSchema->setLabels(array('url' => null, 'details' => null));
@@ -25,7 +25,7 @@ class LinkForm extends BaseLinkForm
       'url' => new sfValidatorString(
         array('required' => true, 'max_length' => 255),
         array(
-          'required' => "is required",
+          'required' => "really want to stick that ?",
           'max_length' => "is too long"
         )
       ),

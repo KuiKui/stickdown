@@ -1,39 +1,133 @@
+@font-face {
+  font-family: 'Gochi Hand';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Gochi Hand'), local('GochiHand-Regular'), url('../fonts/gochi.woff') format('woff');
+}
+
 @import "_tolebo.less";
 
 @textColor: #556;
+@linkColor: #08C;
+@backgroundColor: #f0f5ff;
 
 body {
-  font-family: "Arial", sans-serif;
+  background-color: @backgroundColor;
   color: @textColor;
+  font-family: "Arial", sans-serif;
+  min-height: 100%;
+  position: relative;
 
-  .navbar-inner {
-    .radius(0);
-    .gradient(@navBackgroundColorLight, @navBackgroundColorDark);
-
-    .container {
-      width: 940px;
+  a {
+    color: @linkColor;
+    &:hover {
+      color: @linkColor;
     }
   }
 
-  h2 {
-    margin-bottom: 10px;
+  .navbar {
+    .navbar-inner {
+      .radius(0);
+      .gradient(@navBackgroundColorLight, @navBackgroundColorDark);
+      background-image: url(../images/header-background.png);
+  
+      .container {
+        width: 940px;
+
+        .brand {
+          padding: 8px 20px;
+          font-family: 'Gochi Hand';
+          font-size: 30px;
+          &:hover {
+            .text-shadow(1px, 1px, 10px, 0.4);
+          }
+        }
+
+        ul.nav li a {
+          color: #ddd;
+          font-weight: bold;
+          padding: 12px 10px;
+          &:hover {
+            color: #fff;
+            .text-shadow(1px, 1px, 7px, 0.5);
+          }
+        }
+      }
+    }
   }
 
-  form {
-    margin: 0;
+  #home {
+    .text-shadow(1px, 1px, 1px, 0.4);
 
-    label.control-label {
-      display: none;
+    h2 {
+      margin: 0 0 40px 0;
+    }
+
+    .features {
+      .feature {
+        h3 {
+          margin-bottom: 10px;
+        }
+
+        p {
+          font-size: 1.1em;
+          line-height: 1.7em;
+
+          strong {
+            border: 1px solid @backgroundColor - #555;
+            background-color: @backgroundColor + #222;
+            color: @textColor + #111;
+            padding: 2px 4px;
+            .radius();
+          }
+        }
+      }
+    }
+  }
+
+  #scope {
+    h2 {
+      margin-bottom: 20px;
     }
   
-    div.control-group {
-      float: left;
-      padding-right: 15px;
-      margin-bottom: 0;
+    form {
+      margin: 0;
+  
+      label.control-label {
+        display: none;
+      }
+  
+      div.control-group {
+        float: left;
+        padding-right: 15px;
+        margin-bottom: 0;
+  
+        .controls {
+          height: 55px;
+  
+          #link_url {
+            margin-bottom: 4px;
+            width: 400px;
+          }
+  
+          .help-inline {
+            background: url('../images/error-arrow.png') no-repeat;
+            margin-left: 4px;
+            padding-left: 22px;
+            display: block;
+            color: #a11c20;
+          }
+        }
+      }
+    }
+
+    p.info {
+      color: @textColor + #666;
     }
   }
 
-  p.info {
-    color: @textColor + #666;
+  #footer {
+    text-align: center;
+    margin-top: 25px;
   }
 }

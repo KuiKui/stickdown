@@ -1,9 +1,9 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
-<div class="container">
+<div id="scope" class="container">
   <div class="row">
     <div class="span12">
-      <h2><?php echo $scopeName; ?>, quickly stick your stuff.</h2>
+      <h2>Hi <a href="/<?php echo $scopeName; ?>"><?php echo $scopeName; ?></a>, quickly stick your stuff.</h2>
       <form method="POST" class="form">
         <?php echo $form ?>
         <input id="send" type="submit" value="Stick" class="btn-info" title="Stick my stuff" />
