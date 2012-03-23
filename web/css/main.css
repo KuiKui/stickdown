@@ -51,47 +51,44 @@ body form div.control-group {
   float:left;
   padding-right:15px;
   margin-bottom:0;
+  position:relative;
 }
-body form div.control-group .controls { height:55px; }
-body form div.control-group .controls .help-inline {
+body form div.control-group .help-inline {
   background:url('../images/error-arrow.png') no-repeat;
-  margin-left:4px;
-  padding-left:22px;
-  display:block;
   color:#a11c20;
+  display:block;
+  padding-left:22px;
+  position:absolute;
+  top:31px;
 }
+body form div.control-group label.control-label { display:none; }
 body #home {
   text-shadow:1px 1px 1px rgba(255,255,255,0.4);
   -webkit-text-shadow:1px 1px 1px rgba(255,255,255,0.4);
   -moz-text-shadow:1px 1px 1px rgba(255,255,255,0.4);
 }
 body #home h2 { margin:0 0 40px 0; }
-body #home form { margin-bottom:25px; }
-body #home form #scope_name { margin-bottom:4px; }
-body #home form label.control-label { display:inline; }
-body #home form .controls { display:inline; }
-body #home form .controls .help-inline { margin-left:100px; }
+body #home p#intro {
+  margin-right:5px;
+  font-size:1.1em;
+}
+body #home form .controls { display:inline-block; }
+body #home form .help-inline { left:124px; }
+body #home .features { margin-top:50px; }
 body #home .features .feature h3 { margin-bottom:10px; }
 body #home .features .feature p {
   font-size:1.1em;
   line-height:1.7em;
 }
-body #home .features .feature p strong {
-  border:1px solid #9ba0aa;
-  background-color:#ffffff;
-  color:#666677;
-  padding:2px 4px;
+body #scope h2 { margin-bottom:20px; }
+body #scope form input {
   border-radius:3px;
   -webkit-border-radius:3px;
   -moz-border-radius:3px;
 }
-body #scope h2 { margin-bottom:20px; }
-body #scope form label.control-label { display:none; }
-body #scope form #link_url {
-  margin-bottom:4px;
-  width:400px;
-}
-body #scope p.info { color:#bbbbcc; }
+body #scope form input#link_url { width:400px; }
+body #scope #list { margin-top:25px; }
+body #scope #list th#date { width:100px; }
 body #footer {
   text-align:center;
   margin-top:25px;

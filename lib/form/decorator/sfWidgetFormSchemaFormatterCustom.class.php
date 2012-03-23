@@ -10,10 +10,13 @@ class sfWidgetFormSchemaFormatterCustom extends sfWidgetFormSchemaFormatter
       <div class="control-group">
         %label%
         <div class="controls">
-          %field%%hidden_fields%
-          %error%
+          <div class="input-prepend">
+            %help%%field%%hidden_fields%
+          </div>
         </div>
+        %error%
       </div>',
+    $helpFormat                = '<span class="add-on">%help%</span>',
     $errorListFormatInARow     = '<div class="help-inline">%errors%</div>',
     $errorRowFormatInARow      = '%error%',
     $namedErrorRowFormatInARow = '%name%: %error%';
@@ -34,7 +37,7 @@ class sfWidgetFormSchemaFormatterCustom extends sfWidgetFormSchemaFormatter
     {
       $errors = array($errors);
     }
-    
+
     return strtr($this->getErrorListFormatInARow(), array('%errors%' => implode(', ', $this->unnestErrors($errors))));
   }
 }
