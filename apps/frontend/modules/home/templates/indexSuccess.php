@@ -4,10 +4,9 @@
   <div class="row">
     <div class="span12">
       <h2>Quickly stick your stuff.</h2>
-      <p id="intro">No account is required, just go to your zone and start adding stuff.</p>
       <form method="post" class="form-inline">
         <?php echo $form ?>
-        <input id="send" type="submit" value="Go" class="btn-info" title="Go to my zone" />
+        <input id="send" type="submit" value="Go" class="btn-info" title="Go to this board" />
       </form>
     </div>
   </div>
@@ -21,8 +20,8 @@
       <p>Retrieve and share them quickly on a public, always accessible page, from any web connected device.</p>
     </div>
     <div class="feature span4">
-      <h3>Coucou</h3>
-      <p>Lorem ipsum.</p>
+      <h3>Now</h3>
+      <p>No account is required, just go to <strong>http://stickdown.me/whatever-you-want</strong> and start adding stuff.</p>
     </div>
   </div>
 </div>

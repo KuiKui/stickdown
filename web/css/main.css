@@ -68,10 +68,6 @@ body #home {
   -moz-text-shadow:1px 1px 1px rgba(255,255,255,0.4);
 }
 body #home h2 { margin:0 0 40px 0; }
-body #home p#intro {
-  margin-right:5px;
-  font-size:1.1em;
-}
 body #home form .controls { display:inline-block; }
 body #home form .help-inline { left:124px; }
 body #home .features { margin-top:50px; }
@@ -79,6 +75,15 @@ body #home .features .feature h3 { margin-bottom:10px; }
 body #home .features .feature p {
   font-size:1.1em;
   line-height:1.7em;
+}
+body #home .features .feature p strong {
+  border:1px solid #9ba0aa;
+  background-color:#ffffff;
+  color:#666677;
+  padding:2px 4px;
+  border-radius:3px;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
 }
 body #board h2 { margin-bottom:20px; }
 body #board form input {

@@ -12,7 +12,7 @@ class BoardForm extends BaseBoardForm
   public function configure()
   {
     $this->useFields(array('name'));
-    $this->setWidgets(array('name' => new sfWidgetFormInput(array(), array('placeholder' => 'choose your board'))));
+    $this->setWidgets(array('name' => new sfWidgetFormInput(array(), array('placeholder' => 'pick a board name'))));
 
     $this->widgetSchema->setLabels(array('name' => ''));
     $this->widgetSchema->setHelps(array('name' => 'http://stickdown.me/'));

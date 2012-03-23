@@ -1,3 +1,3 @@
 $(document).ready(function() {
-  $('#scope_name').focus();
+  $('#board_name').focus();
 });

@@ -87,11 +87,6 @@ body {
       margin: 0 0 40px 0;
     }
 
-    p#intro {
-      margin-right: 5px;
-      font-size: 1.1em;
-    }
-
     form {
       .controls {
         display: inline-block;
@@ -113,6 +108,14 @@ body {
         p {
           font-size: 1.1em;
           line-height: 1.7em;
+
+          strong {
+            border: 1px solid @backgroundColor - #555;
+            background-color: @backgroundColor + #222;
+            color: @textColor + #111;
+            padding: 2px 4px;
+            .radius();
+          }
         }
       }
     }
