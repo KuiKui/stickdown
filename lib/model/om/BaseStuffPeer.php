@@ -2,73 +2,82 @@
 
 
 /**
- * Base static class for performing query and update operations on the 'link' table.
+ * Base static class for performing query and update operations on the 'stuff' table.
  *
  * 
  *
  * @package    propel.generator.lib.model.om
  */
-abstract class BaseLinkPeer {
+abstract class BaseStuffPeer {
 
 	/** the default database name for this class */
 	const DATABASE_NAME = 'propel';
 
 	/** the table name for this class */
-	const TABLE_NAME = 'link';
+	const TABLE_NAME = 'stuff';
 
 	/** the related Propel class for this table */
-	const OM_CLASS = 'Link';
+	const OM_CLASS = 'Stuff';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'lib.model.Link';
+	const CLASS_DEFAULT = 'lib.model.Stuff';
 
 	/** the related TableMap class for this table */
-	const TM_CLASS = 'LinkTableMap';
+	const TM_CLASS = 'StuffTableMap';
 
 	/** The total number of columns. */
-	const NUM_COLUMNS = 9;
+	const NUM_COLUMNS = 12;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-	const NUM_HYDRATE_COLUMNS = 9;
+	const NUM_HYDRATE_COLUMNS = 12;
 
 	/** the column name for the ID field */
-	const ID = 'link.ID';
+	const ID = 'stuff.ID';
 
-	/** the column name for the SCOPE_ID field */
-	const SCOPE_ID = 'link.SCOPE_ID';
+	/** the column name for the BOARD_ID field */
+	const BOARD_ID = 'stuff.BOARD_ID';
 
-	/** the column name for the URL field */
-	const URL = 'link.URL';
+	/** the column name for the CONTENT field */
+	const CONTENT = 'stuff.CONTENT';
 
 	/** the column name for the DETAILS field */
-	const DETAILS = 'link.DETAILS';
+	const DETAILS = 'stuff.DETAILS';
 
 	/** the column name for the LABEL field */
-	const LABEL = 'link.LABEL';
+	const LABEL = 'stuff.LABEL';
 
-	/** the column name for the IP field */
-	const IP = 'link.IP';
+	/** the column name for the STARRED field */
+	const STARRED = 'stuff.STARRED';
+
+	/** the column name for the CHECKED field */
+	const CHECKED = 'stuff.CHECKED';
 
 	/** the column name for the ORDER field */
-	const ORDER = 'link.ORDER';
+	const ORDER = 'stuff.ORDER';
+
+	/** the column name for the IP field */
+	const IP = 'stuff.IP';
 
 	/** the column name for the CREATED_AT field */
-	const CREATED_AT = 'link.CREATED_AT';
+	const CREATED_AT = 'stuff.CREATED_AT';
 
 	/** the column name for the UPDATED_AT field */
-	const UPDATED_AT = 'link.UPDATED_AT';
+	const UPDATED_AT = 'stuff.UPDATED_AT';
+
+	/** the column name for the DELETED_AT field */
+	const DELETED_AT = 'stuff.DELETED_AT';
 
 	/** The default string format for model objects of the related table **/
 	const DEFAULT_STRING_FORMAT = 'YAML';
 
 	/**
-	 * An identiy map to hold any loaded instances of Link objects.
+	 * An identiy map to hold any loaded instances of Stuff objects.
 	 * This must be public so that other peer classes can access this when hydrating from JOIN
 	 * queries.
-	 * @var        array Link[]
+	 * @var        array Stuff[]
 	 */
 	public static $instances = array();
 
@@ -80,12 +89,12 @@ abstract class BaseLinkPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	protected static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'ScopeId', 'Url', 'Details', 'Label', 'Ip', 'Order', 'CreatedAt', 'UpdatedAt', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'scopeId', 'url', 'details', 'label', 'ip', 'order', 'createdAt', 'updatedAt', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::SCOPE_ID, self::URL, self::DETAILS, self::LABEL, self::IP, self::ORDER, self::CREATED_AT, self::UPDATED_AT, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'SCOPE_ID', 'URL', 'DETAILS', 'LABEL', 'IP', 'ORDER', 'CREATED_AT', 'UPDATED_AT', ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'scope_id', 'url', 'details', 'label', 'ip', 'order', 'created_at', 'updated_at', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'BoardId', 'Content', 'Details', 'Label', 'Starred', 'Checked', 'Order', 'Ip', 'CreatedAt', 'UpdatedAt', 'DeletedAt', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'boardId', 'content', 'details', 'label', 'starred', 'checked', 'order', 'ip', 'createdAt', 'updatedAt', 'deletedAt', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::BOARD_ID, self::CONTENT, self::DETAILS, self::LABEL, self::STARRED, self::CHECKED, self::ORDER, self::IP, self::CREATED_AT, self::UPDATED_AT, self::DELETED_AT, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'BOARD_ID', 'CONTENT', 'DETAILS', 'LABEL', 'STARRED', 'CHECKED', 'ORDER', 'IP', 'CREATED_AT', 'UPDATED_AT', 'DELETED_AT', ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'board_id', 'content', 'details', 'label', 'starred', 'checked', 'order', 'ip', 'created_at', 'updated_at', 'deleted_at', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, )
 	);
 
 	/**
@@ -95,12 +104,12 @@ abstract class BaseLinkPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	protected static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'ScopeId' => 1, 'Url' => 2, 'Details' => 3, 'Label' => 4, 'Ip' => 5, 'Order' => 6, 'CreatedAt' => 7, 'UpdatedAt' => 8, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'scopeId' => 1, 'url' => 2, 'details' => 3, 'label' => 4, 'ip' => 5, 'order' => 6, 'createdAt' => 7, 'updatedAt' => 8, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::SCOPE_ID => 1, self::URL => 2, self::DETAILS => 3, self::LABEL => 4, self::IP => 5, self::ORDER => 6, self::CREATED_AT => 7, self::UPDATED_AT => 8, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'SCOPE_ID' => 1, 'URL' => 2, 'DETAILS' => 3, 'LABEL' => 4, 'IP' => 5, 'ORDER' => 6, 'CREATED_AT' => 7, 'UPDATED_AT' => 8, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'scope_id' => 1, 'url' => 2, 'details' => 3, 'label' => 4, 'ip' => 5, 'order' => 6, 'created_at' => 7, 'updated_at' => 8, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'BoardId' => 1, 'Content' => 2, 'Details' => 3, 'Label' => 4, 'Starred' => 5, 'Checked' => 6, 'Order' => 7, 'Ip' => 8, 'CreatedAt' => 9, 'UpdatedAt' => 10, 'DeletedAt' => 11, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'boardId' => 1, 'content' => 2, 'details' => 3, 'label' => 4, 'starred' => 5, 'checked' => 6, 'order' => 7, 'ip' => 8, 'createdAt' => 9, 'updatedAt' => 10, 'deletedAt' => 11, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::BOARD_ID => 1, self::CONTENT => 2, self::DETAILS => 3, self::LABEL => 4, self::STARRED => 5, self::CHECKED => 6, self::ORDER => 7, self::IP => 8, self::CREATED_AT => 9, self::UPDATED_AT => 10, self::DELETED_AT => 11, ),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'BOARD_ID' => 1, 'CONTENT' => 2, 'DETAILS' => 3, 'LABEL' => 4, 'STARRED' => 5, 'CHECKED' => 6, 'ORDER' => 7, 'IP' => 8, 'CREATED_AT' => 9, 'UPDATED_AT' => 10, 'DELETED_AT' => 11, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'board_id' => 1, 'content' => 2, 'details' => 3, 'label' => 4, 'starred' => 5, 'checked' => 6, 'order' => 7, 'ip' => 8, 'created_at' => 9, 'updated_at' => 10, 'deleted_at' => 11, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, )
 	);
 
 	/**
@@ -149,12 +158,12 @@ abstract class BaseLinkPeer {
 	 *		$c->addJoin(TablePeer::alias("alias1", TablePeer::PRIMARY_KEY_COLUMN), TablePeer::PRIMARY_KEY_COLUMN);
 	 * </code>
 	 * @param      string $alias The alias for the current table.
-	 * @param      string $column The column name for current table. (i.e. LinkPeer::COLUMN_NAME).
+	 * @param      string $column The column name for current table. (i.e. StuffPeer::COLUMN_NAME).
 	 * @return     string
 	 */
 	public static function alias($alias, $column)
 	{
-		return str_replace(LinkPeer::TABLE_NAME.'.', $alias.'.', $column);
+		return str_replace(StuffPeer::TABLE_NAME.'.', $alias.'.', $column);
 	}
 
 	/**
@@ -172,25 +181,31 @@ abstract class BaseLinkPeer {
 	public static function addSelectColumns(Criteria $criteria, $alias = null)
 	{
 		if (null === $alias) {
-			$criteria->addSelectColumn(LinkPeer::ID);
-			$criteria->addSelectColumn(LinkPeer::SCOPE_ID);
-			$criteria->addSelectColumn(LinkPeer::URL);
-			$criteria->addSelectColumn(LinkPeer::DETAILS);
-			$criteria->addSelectColumn(LinkPeer::LABEL);
-			$criteria->addSelectColumn(LinkPeer::IP);
-			$criteria->addSelectColumn(LinkPeer::ORDER);
-			$criteria->addSelectColumn(LinkPeer::CREATED_AT);
-			$criteria->addSelectColumn(LinkPeer::UPDATED_AT);
+			$criteria->addSelectColumn(StuffPeer::ID);
+			$criteria->addSelectColumn(StuffPeer::BOARD_ID);
+			$criteria->addSelectColumn(StuffPeer::CONTENT);
+			$criteria->addSelectColumn(StuffPeer::DETAILS);
+			$criteria->addSelectColumn(StuffPeer::LABEL);
+			$criteria->addSelectColumn(StuffPeer::STARRED);
+			$criteria->addSelectColumn(StuffPeer::CHECKED);
+			$criteria->addSelectColumn(StuffPeer::ORDER);
+			$criteria->addSelectColumn(StuffPeer::IP);
+			$criteria->addSelectColumn(StuffPeer::CREATED_AT);
+			$criteria->addSelectColumn(StuffPeer::UPDATED_AT);
+			$criteria->addSelectColumn(StuffPeer::DELETED_AT);
 		} else {
 			$criteria->addSelectColumn($alias . '.ID');
-			$criteria->addSelectColumn($alias . '.SCOPE_ID');
-			$criteria->addSelectColumn($alias . '.URL');
+			$criteria->addSelectColumn($alias . '.BOARD_ID');
+			$criteria->addSelectColumn($alias . '.CONTENT');
 			$criteria->addSelectColumn($alias . '.DETAILS');
 			$criteria->addSelectColumn($alias . '.LABEL');
-			$criteria->addSelectColumn($alias . '.IP');
+			$criteria->addSelectColumn($alias . '.STARRED');
+			$criteria->addSelectColumn($alias . '.CHECKED');
 			$criteria->addSelectColumn($alias . '.ORDER');
+			$criteria->addSelectColumn($alias . '.IP');
 			$criteria->addSelectColumn($alias . '.CREATED_AT');
 			$criteria->addSelectColumn($alias . '.UPDATED_AT');
+			$criteria->addSelectColumn($alias . '.DELETED_AT');
 		}
 	}
 
@@ -210,26 +225,26 @@ abstract class BaseLinkPeer {
 		// We need to set the primary table name, since in the case that there are no WHERE columns
 		// it will be impossible for the BasePeer::createSelectSql() method to determine which
 		// tables go into the FROM clause.
-		$criteria->setPrimaryTableName(LinkPeer::TABLE_NAME);
+		$criteria->setPrimaryTableName(StuffPeer::TABLE_NAME);
 
 		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->setDistinct();
 		}
 
 		if (!$criteria->hasSelectClause()) {
-			LinkPeer::addSelectColumns($criteria);
+			StuffPeer::addSelectColumns($criteria);
 		}
 
 		$criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
 		$criteria->setDbName(self::DATABASE_NAME); // Set the correct dbName
 
 		if ($con === null) {
-			$con = Propel::getConnection(LinkPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(StuffPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 		// symfony_behaviors behavior
 		foreach (sfMixer::getCallables(self::getMixerPreSelectHook(__FUNCTION__)) as $sf_hook)
 		{
-		  call_user_func($sf_hook, 'BaseLinkPeer', $criteria, $con);
+		  call_user_func($sf_hook, 'BaseStuffPeer', $criteria, $con);
 		}
 
 		// BasePeer returns a PDOStatement
@@ -248,7 +263,7 @@ abstract class BaseLinkPeer {
 	 *
 	 * @param      Criteria $criteria object used to create the SELECT statement.
 	 * @param      PropelPDO $con
-	 * @return     Link
+	 * @return     Stuff
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
 	 */
@@ -256,7 +271,7 @@ abstract class BaseLinkPeer {
 	{
 		$critcopy = clone $criteria;
 		$critcopy->setLimit(1);
-		$objects = LinkPeer::doSelect($critcopy, $con);
+		$objects = StuffPeer::doSelect($critcopy, $con);
 		if ($objects) {
 			return $objects[0];
 		}
@@ -273,7 +288,7 @@ abstract class BaseLinkPeer {
 	 */
 	public static function doSelect(Criteria $criteria, PropelPDO $con = null)
 	{
-		return LinkPeer::populateObjects(LinkPeer::doSelectStmt($criteria, $con));
+		return StuffPeer::populateObjects(StuffPeer::doSelectStmt($criteria, $con));
 	}
 	/**
 	 * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
@@ -291,12 +306,12 @@ abstract class BaseLinkPeer {
 	public static function doSelectStmt(Criteria $criteria, PropelPDO $con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(LinkPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(StuffPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
 		if (!$criteria->hasSelectClause()) {
 			$criteria = clone $criteria;
-			LinkPeer::addSelectColumns($criteria);
+			StuffPeer::addSelectColumns($criteria);
 		}
 
 		// Set the correct dbName
@@ -304,7 +319,7 @@ abstract class BaseLinkPeer {
 		// symfony_behaviors behavior
 		foreach (sfMixer::getCallables(self::getMixerPreSelectHook(__FUNCTION__)) as $sf_hook)
 		{
-		  call_user_func($sf_hook, 'BaseLinkPeer', $criteria, $con);
+		  call_user_func($sf_hook, 'BaseStuffPeer', $criteria, $con);
 		}
 
 
@@ -320,7 +335,7 @@ abstract class BaseLinkPeer {
 	 * to the cache in order to ensure that the same objects are always returned by doSelect*()
 	 * and retrieveByPK*() calls.
 	 *
-	 * @param      Link $value A Link object.
+	 * @param      Stuff $value A Stuff object.
 	 * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
 	 */
 	public static function addInstanceToPool($obj, $key = null)
@@ -341,18 +356,18 @@ abstract class BaseLinkPeer {
 	 * methods in your stub classes -- you may need to explicitly remove objects
 	 * from the cache in order to prevent returning objects that no longer exist.
 	 *
-	 * @param      mixed $value A Link object or a primary key value.
+	 * @param      mixed $value A Stuff object or a primary key value.
 	 */
 	public static function removeInstanceFromPool($value)
 	{
 		if (Propel::isInstancePoolingEnabled() && $value !== null) {
-			if (is_object($value) && $value instanceof Link) {
+			if (is_object($value) && $value instanceof Stuff) {
 				$key = (string) $value->getId();
 			} elseif (is_scalar($value)) {
 				// assume we've been passed a primary key
 				$key = (string) $value;
 			} else {
-				$e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or Link object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
+				$e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or Stuff object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
 				throw $e;
 			}
 
@@ -367,7 +382,7 @@ abstract class BaseLinkPeer {
 	 * a multi-column primary key, a serialize()d version of the primary key will be returned.
 	 *
 	 * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-	 * @return     Link Found object or NULL if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+	 * @return     Stuff Found object or NULL if 1) no instance exists for specified key or 2) instance pooling has been disabled.
 	 * @see        getPrimaryKeyHash()
 	 */
 	public static function getInstanceFromPool($key)
@@ -391,7 +406,7 @@ abstract class BaseLinkPeer {
 	}
 	
 	/**
-	 * Method to invalidate the instance pool of all tables related to link
+	 * Method to invalidate the instance pool of all tables related to stuff
 	 * by a foreign key with ON DELETE CASCADE
 	 */
 	public static function clearRelatedInstancePool()
@@ -443,11 +458,11 @@ abstract class BaseLinkPeer {
 		$results = array();
 	
 		// set the class once to avoid overhead in the loop
-		$cls = LinkPeer::getOMClass(false);
+		$cls = StuffPeer::getOMClass(false);
 		// populate the object(s)
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$key = LinkPeer::getPrimaryKeyHashFromRow($row, 0);
-			if (null !== ($obj = LinkPeer::getInstanceFromPool($key))) {
+			$key = StuffPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj = StuffPeer::getInstanceFromPool($key))) {
 				// We no longer rehydrate the object, since this can cause data loss.
 				// See http://www.propelorm.org/ticket/509
 				// $obj->hydrate($row, 0, true); // rehydrate
@@ -456,7 +471,7 @@ abstract class BaseLinkPeer {
 				$obj = new $cls();
 				$obj->hydrate($row);
 				$results[] = $obj;
-				LinkPeer::addInstanceToPool($obj, $key);
+				StuffPeer::addInstanceToPool($obj, $key);
 			} // if key exists
 		}
 		$stmt->closeCursor();
@@ -469,28 +484,28 @@ abstract class BaseLinkPeer {
 	 * @param      int $startcol The 0-based offset for reading from the resultset row.
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
-	 * @return     array (Link object, last column rank)
+	 * @return     array (Stuff object, last column rank)
 	 */
 	public static function populateObject($row, $startcol = 0)
 	{
-		$key = LinkPeer::getPrimaryKeyHashFromRow($row, $startcol);
-		if (null !== ($obj = LinkPeer::getInstanceFromPool($key))) {
+		$key = StuffPeer::getPrimaryKeyHashFromRow($row, $startcol);
+		if (null !== ($obj = StuffPeer::getInstanceFromPool($key))) {
 			// We no longer rehydrate the object, since this can cause data loss.
 			// See http://www.propelorm.org/ticket/509
 			// $obj->hydrate($row, $startcol, true); // rehydrate
-			$col = $startcol + LinkPeer::NUM_HYDRATE_COLUMNS;
+			$col = $startcol + StuffPeer::NUM_HYDRATE_COLUMNS;
 		} else {
-			$cls = LinkPeer::OM_CLASS;
+			$cls = StuffPeer::OM_CLASS;
 			$obj = new $cls();
 			$col = $obj->hydrate($row, $startcol);
-			LinkPeer::addInstanceToPool($obj, $key);
+			StuffPeer::addInstanceToPool($obj, $key);
 		}
 		return array($obj, $col);
 	}
 
 
 	/**
-	 * Returns the number of rows matching criteria, joining the related Scope table
+	 * Returns the number of rows matching criteria, joining the related Board table
 	 *
 	 * @param      Criteria $criteria
 	 * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
@@ -498,7 +513,7 @@ abstract class BaseLinkPeer {
 	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
 	 * @return     int Number of matching rows.
 	 */
-	public static function doCountJoinScope(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	public static function doCountJoinBoard(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
 	{
 		// we're going to modify criteria, so copy it first
 		$criteria = clone $criteria;
@@ -506,14 +521,14 @@ abstract class BaseLinkPeer {
 		// We need to set the primary table name, since in the case that there are no WHERE columns
 		// it will be impossible for the BasePeer::createSelectSql() method to determine which
 		// tables go into the FROM clause.
-		$criteria->setPrimaryTableName(LinkPeer::TABLE_NAME);
+		$criteria->setPrimaryTableName(StuffPeer::TABLE_NAME);
 
 		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->setDistinct();
 		}
 
 		if (!$criteria->hasSelectClause()) {
-			LinkPeer::addSelectColumns($criteria);
+			StuffPeer::addSelectColumns($criteria);
 		}
 
 		$criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
@@ -522,15 +537,15 @@ abstract class BaseLinkPeer {
 		$criteria->setDbName(self::DATABASE_NAME);
 
 		if ($con === null) {
-			$con = Propel::getConnection(LinkPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(StuffPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
-		$criteria->addJoin(LinkPeer::SCOPE_ID, ScopePeer::ID, $join_behavior);
+		$criteria->addJoin(StuffPeer::BOARD_ID, BoardPeer::ID, $join_behavior);
 
 		// symfony_behaviors behavior
 		foreach (sfMixer::getCallables(self::getMixerPreSelectHook(__FUNCTION__)) as $sf_hook)
 		{
-		  call_user_func($sf_hook, 'BaseLinkPeer', $criteria, $con);
+		  call_user_func($sf_hook, 'BaseStuffPeer', $criteria, $con);
 		}
 
 		$stmt = BasePeer::doCount($criteria, $con);
@@ -546,15 +561,15 @@ abstract class BaseLinkPeer {
 
 
 	/**
-	 * Selects a collection of Link objects pre-filled with their Scope objects.
+	 * Selects a collection of Stuff objects pre-filled with their Board objects.
 	 * @param      Criteria  $criteria
 	 * @param      PropelPDO $con
 	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-	 * @return     array Array of Link objects.
+	 * @return     array Array of Stuff objects.
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
 	 */
-	public static function doSelectJoinScope(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	public static function doSelectJoinBoard(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
 	{
 		$criteria = clone $criteria;
 
@@ -563,50 +578,50 @@ abstract class BaseLinkPeer {
 			$criteria->setDbName(self::DATABASE_NAME);
 		}
 
-		LinkPeer::addSelectColumns($criteria);
-		$startcol = LinkPeer::NUM_HYDRATE_COLUMNS;
-		ScopePeer::addSelectColumns($criteria);
+		StuffPeer::addSelectColumns($criteria);
+		$startcol = StuffPeer::NUM_HYDRATE_COLUMNS;
+		BoardPeer::addSelectColumns($criteria);
 
-		$criteria->addJoin(LinkPeer::SCOPE_ID, ScopePeer::ID, $join_behavior);
+		$criteria->addJoin(StuffPeer::BOARD_ID, BoardPeer::ID, $join_behavior);
 
 		// symfony_behaviors behavior
 		foreach (sfMixer::getCallables(self::getMixerPreSelectHook(__FUNCTION__)) as $sf_hook)
 		{
-		  call_user_func($sf_hook, 'BaseLinkPeer', $criteria, $con);
+		  call_user_func($sf_hook, 'BaseStuffPeer', $criteria, $con);
 		}
 
 		$stmt = BasePeer::doSelect($criteria, $con);
 		$results = array();
 
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$key1 = LinkPeer::getPrimaryKeyHashFromRow($row, 0);
-			if (null !== ($obj1 = LinkPeer::getInstanceFromPool($key1))) {
+			$key1 = StuffPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj1 = StuffPeer::getInstanceFromPool($key1))) {
 				// We no longer rehydrate the object, since this can cause data loss.
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
 
-				$cls = LinkPeer::getOMClass(false);
+				$cls = StuffPeer::getOMClass(false);
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
-				LinkPeer::addInstanceToPool($obj1, $key1);
+				StuffPeer::addInstanceToPool($obj1, $key1);
 			} // if $obj1 already loaded
 
-			$key2 = ScopePeer::getPrimaryKeyHashFromRow($row, $startcol);
+			$key2 = BoardPeer::getPrimaryKeyHashFromRow($row, $startcol);
 			if ($key2 !== null) {
-				$obj2 = ScopePeer::getInstanceFromPool($key2);
+				$obj2 = BoardPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = ScopePeer::getOMClass(false);
+					$cls = BoardPeer::getOMClass(false);
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol);
-					ScopePeer::addInstanceToPool($obj2, $key2);
+					BoardPeer::addInstanceToPool($obj2, $key2);
 				} // if obj2 already loaded
 
-				// Add the $obj1 (Link) to $obj2 (Scope)
-				$obj2->addLink($obj1);
+				// Add the $obj1 (Stuff) to $obj2 (Board)
+				$obj2->addStuff($obj1);
 
 			} // if joined row was not null
 
@@ -634,14 +649,14 @@ abstract class BaseLinkPeer {
 		// We need to set the primary table name, since in the case that there are no WHERE columns
 		// it will be impossible for the BasePeer::createSelectSql() method to determine which
 		// tables go into the FROM clause.
-		$criteria->setPrimaryTableName(LinkPeer::TABLE_NAME);
+		$criteria->setPrimaryTableName(StuffPeer::TABLE_NAME);
 
 		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->setDistinct();
 		}
 
 		if (!$criteria->hasSelectClause()) {
-			LinkPeer::addSelectColumns($criteria);
+			StuffPeer::addSelectColumns($criteria);
 		}
 
 		$criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
@@ -650,15 +665,15 @@ abstract class BaseLinkPeer {
 		$criteria->setDbName(self::DATABASE_NAME);
 
 		if ($con === null) {
-			$con = Propel::getConnection(LinkPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(StuffPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
-		$criteria->addJoin(LinkPeer::SCOPE_ID, ScopePeer::ID, $join_behavior);
+		$criteria->addJoin(StuffPeer::BOARD_ID, BoardPeer::ID, $join_behavior);
 
 		// symfony_behaviors behavior
 		foreach (sfMixer::getCallables(self::getMixerPreSelectHook(__FUNCTION__)) as $sf_hook)
 		{
-		  call_user_func($sf_hook, 'BaseLinkPeer', $criteria, $con);
+		  call_user_func($sf_hook, 'BaseStuffPeer', $criteria, $con);
 		}
 
 		$stmt = BasePeer::doCount($criteria, $con);
@@ -673,12 +688,12 @@ abstract class BaseLinkPeer {
 	}
 
 	/**
-	 * Selects a collection of Link objects pre-filled with all related objects.
+	 * Selects a collection of Stuff objects pre-filled with all related objects.
 	 *
 	 * @param      Criteria  $criteria
 	 * @param      PropelPDO $con
 	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-	 * @return     array Array of Link objects.
+	 * @return     array Array of Stuff objects.
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
 	 */
@@ -691,53 +706,53 @@ abstract class BaseLinkPeer {
 			$criteria->setDbName(self::DATABASE_NAME);
 		}
 
-		LinkPeer::addSelectColumns($criteria);
-		$startcol2 = LinkPeer::NUM_HYDRATE_COLUMNS;
+		StuffPeer::addSelectColumns($criteria);
+		$startcol2 = StuffPeer::NUM_HYDRATE_COLUMNS;
 
-		ScopePeer::addSelectColumns($criteria);
-		$startcol3 = $startcol2 + ScopePeer::NUM_HYDRATE_COLUMNS;
+		BoardPeer::addSelectColumns($criteria);
+		$startcol3 = $startcol2 + BoardPeer::NUM_HYDRATE_COLUMNS;
 
-		$criteria->addJoin(LinkPeer::SCOPE_ID, ScopePeer::ID, $join_behavior);
+		$criteria->addJoin(StuffPeer::BOARD_ID, BoardPeer::ID, $join_behavior);
 
 		// symfony_behaviors behavior
 		foreach (sfMixer::getCallables(self::getMixerPreSelectHook(__FUNCTION__)) as $sf_hook)
 		{
-		  call_user_func($sf_hook, 'BaseLinkPeer', $criteria, $con);
+		  call_user_func($sf_hook, 'BaseStuffPeer', $criteria, $con);
 		}
 
 		$stmt = BasePeer::doSelect($criteria, $con);
 		$results = array();
 
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$key1 = LinkPeer::getPrimaryKeyHashFromRow($row, 0);
-			if (null !== ($obj1 = LinkPeer::getInstanceFromPool($key1))) {
+			$key1 = StuffPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj1 = StuffPeer::getInstanceFromPool($key1))) {
 				// We no longer rehydrate the object, since this can cause data loss.
 				// See http://www.propelorm.org/ticket/509
 				// $obj1->hydrate($row, 0, true); // rehydrate
 			} else {
-				$cls = LinkPeer::getOMClass(false);
+				$cls = StuffPeer::getOMClass(false);
 
 				$obj1 = new $cls();
 				$obj1->hydrate($row);
-				LinkPeer::addInstanceToPool($obj1, $key1);
+				StuffPeer::addInstanceToPool($obj1, $key1);
 			} // if obj1 already loaded
 
-			// Add objects for joined Scope rows
+			// Add objects for joined Board rows
 
-			$key2 = ScopePeer::getPrimaryKeyHashFromRow($row, $startcol2);
+			$key2 = BoardPeer::getPrimaryKeyHashFromRow($row, $startcol2);
 			if ($key2 !== null) {
-				$obj2 = ScopePeer::getInstanceFromPool($key2);
+				$obj2 = BoardPeer::getInstanceFromPool($key2);
 				if (!$obj2) {
 
-					$cls = ScopePeer::getOMClass(false);
+					$cls = BoardPeer::getOMClass(false);
 
 					$obj2 = new $cls();
 					$obj2->hydrate($row, $startcol2);
-					ScopePeer::addInstanceToPool($obj2, $key2);
+					BoardPeer::addInstanceToPool($obj2, $key2);
 				} // if obj2 loaded
 
-				// Add the $obj1 (Link) to the collection in $obj2 (Scope)
-				$obj2->addLink($obj1);
+				// Add the $obj1 (Stuff) to the collection in $obj2 (Board)
+				$obj2->addStuff($obj1);
 			} // if joined row not null
 
 			$results[] = $obj1;
@@ -763,10 +778,10 @@ abstract class BaseLinkPeer {
 	 */
 	public static function buildTableMap()
 	{
-	  $dbMap = Propel::getDatabaseMap(BaseLinkPeer::DATABASE_NAME);
-	  if (!$dbMap->hasTable(BaseLinkPeer::TABLE_NAME))
+	  $dbMap = Propel::getDatabaseMap(BaseStuffPeer::DATABASE_NAME);
+	  if (!$dbMap->hasTable(BaseStuffPeer::TABLE_NAME))
 	  {
-	    $dbMap->addTableObject(new LinkTableMap());
+	    $dbMap->addTableObject(new StuffTableMap());
 	  }
 	}
 
@@ -783,13 +798,13 @@ abstract class BaseLinkPeer {
 	 */
 	public static function getOMClass($withPrefix = true)
 	{
-		return $withPrefix ? LinkPeer::CLASS_DEFAULT : LinkPeer::OM_CLASS;
+		return $withPrefix ? StuffPeer::CLASS_DEFAULT : StuffPeer::OM_CLASS;
 	}
 
 	/**
-	 * Performs an INSERT on the database, given a Link or Criteria object.
+	 * Performs an INSERT on the database, given a Stuff or Criteria object.
 	 *
-	 * @param      mixed $values Criteria or Link object containing data that is used to create the INSERT statement.
+	 * @param      mixed $values Criteria or Stuff object containing data that is used to create the INSERT statement.
 	 * @param      PropelPDO $con the PropelPDO connection to use
 	 * @return     mixed The new primary key.
 	 * @throws     PropelException Any exceptions caught during processing will be
@@ -798,17 +813,17 @@ abstract class BaseLinkPeer {
 	public static function doInsert($values, PropelPDO $con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(LinkPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(StuffPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; // rename for clarity
 		} else {
-			$criteria = $values->buildCriteria(); // build Criteria from Link object
+			$criteria = $values->buildCriteria(); // build Criteria from Stuff object
 		}
 
-		if ($criteria->containsKey(LinkPeer::ID) && $criteria->keyContainsValue(LinkPeer::ID) ) {
-			throw new PropelException('Cannot insert a value for auto-increment primary key ('.LinkPeer::ID.')');
+		if ($criteria->containsKey(StuffPeer::ID) && $criteria->keyContainsValue(StuffPeer::ID) ) {
+			throw new PropelException('Cannot insert a value for auto-increment primary key ('.StuffPeer::ID.')');
 		}
 
 
@@ -830,9 +845,9 @@ abstract class BaseLinkPeer {
 	}
 
 	/**
-	 * Performs an UPDATE on the database, given a Link or Criteria object.
+	 * Performs an UPDATE on the database, given a Stuff or Criteria object.
 	 *
-	 * @param      mixed $values Criteria or Link object containing data that is used to create the UPDATE statement.
+	 * @param      mixed $values Criteria or Stuff object containing data that is used to create the UPDATE statement.
 	 * @param      PropelPDO $con The connection to use (specify PropelPDO connection object to exert more control over transactions).
 	 * @return     int The number of affected rows (if supported by underlying database driver).
 	 * @throws     PropelException Any exceptions caught during processing will be
@@ -841,7 +856,7 @@ abstract class BaseLinkPeer {
 	public static function doUpdate($values, PropelPDO $con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(LinkPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(StuffPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		$selectCriteria = new Criteria(self::DATABASE_NAME);
@@ -849,15 +864,15 @@ abstract class BaseLinkPeer {
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; // rename for clarity
 
-			$comparison = $criteria->getComparison(LinkPeer::ID);
-			$value = $criteria->remove(LinkPeer::ID);
+			$comparison = $criteria->getComparison(StuffPeer::ID);
+			$value = $criteria->remove(StuffPeer::ID);
 			if ($value) {
-				$selectCriteria->add(LinkPeer::ID, $value, $comparison);
+				$selectCriteria->add(StuffPeer::ID, $value, $comparison);
 			} else {
-				$selectCriteria->setPrimaryTableName(LinkPeer::TABLE_NAME);
+				$selectCriteria->setPrimaryTableName(StuffPeer::TABLE_NAME);
 			}
 
-		} else { // $values is Link object
+		} else { // $values is Stuff object
 			$criteria = $values->buildCriteria(); // gets full criteria
 			$selectCriteria = $values->buildPkeyCriteria(); // gets criteria w/ primary key(s)
 		}
@@ -869,7 +884,7 @@ abstract class BaseLinkPeer {
 	}
 
 	/**
-	 * Deletes all rows from the link table.
+	 * Deletes all rows from the stuff table.
 	 *
 	 * @param      PropelPDO $con the connection to use
 	 * @return     int The number of affected rows (if supported by underlying database driver).
@@ -877,19 +892,19 @@ abstract class BaseLinkPeer {
 	public static function doDeleteAll(PropelPDO $con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(LinkPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(StuffPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 		$affectedRows = 0; // initialize var to track total num of affected rows
 		try {
 			// use transaction because $criteria could contain info
 			// for more than one table or we could emulating ON DELETE CASCADE, etc.
 			$con->beginTransaction();
-			$affectedRows += BasePeer::doDeleteAll(LinkPeer::TABLE_NAME, $con, LinkPeer::DATABASE_NAME);
+			$affectedRows += BasePeer::doDeleteAll(StuffPeer::TABLE_NAME, $con, StuffPeer::DATABASE_NAME);
 			// Because this db requires some delete cascade/set null emulation, we have to
 			// clear the cached instance *after* the emulation has happened (since
 			// instances get re-added by the select statement contained therein).
-			LinkPeer::clearInstancePool();
-			LinkPeer::clearRelatedInstancePool();
+			StuffPeer::clearInstancePool();
+			StuffPeer::clearRelatedInstancePool();
 			$con->commit();
 			return $affectedRows;
 		} catch (PropelException $e) {
@@ -899,9 +914,9 @@ abstract class BaseLinkPeer {
 	}
 
 	/**
-	 * Performs a DELETE on the database, given a Link or Criteria object OR a primary key value.
+	 * Performs a DELETE on the database, given a Stuff or Criteria object OR a primary key value.
 	 *
-	 * @param      mixed $values Criteria or Link object or primary key or array of primary keys
+	 * @param      mixed $values Criteria or Stuff object or primary key or array of primary keys
 	 *              which is used to create the DELETE statement
 	 * @param      PropelPDO $con the connection to use
 	 * @return     int 	The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
@@ -912,27 +927,27 @@ abstract class BaseLinkPeer {
 	 public static function doDelete($values, PropelPDO $con = null)
 	 {
 		if ($con === null) {
-			$con = Propel::getConnection(LinkPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(StuffPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		if ($values instanceof Criteria) {
 			// invalidate the cache for all objects of this type, since we have no
 			// way of knowing (without running a query) what objects should be invalidated
 			// from the cache based on this Criteria.
-			LinkPeer::clearInstancePool();
+			StuffPeer::clearInstancePool();
 			// rename for clarity
 			$criteria = clone $values;
-		} elseif ($values instanceof Link) { // it's a model object
+		} elseif ($values instanceof Stuff) { // it's a model object
 			// invalidate the cache for this single object
-			LinkPeer::removeInstanceFromPool($values);
+			StuffPeer::removeInstanceFromPool($values);
 			// create criteria based on pk values
 			$criteria = $values->buildPkeyCriteria();
 		} else { // it's a primary key, or an array of pks
 			$criteria = new Criteria(self::DATABASE_NAME);
-			$criteria->add(LinkPeer::ID, (array) $values, Criteria::IN);
+			$criteria->add(StuffPeer::ID, (array) $values, Criteria::IN);
 			// invalidate the cache for this object(s)
 			foreach ((array) $values as $singleval) {
-				LinkPeer::removeInstanceFromPool($singleval);
+				StuffPeer::removeInstanceFromPool($singleval);
 			}
 		}
 
@@ -947,7 +962,7 @@ abstract class BaseLinkPeer {
 			$con->beginTransaction();
 			
 			$affectedRows += BasePeer::doDelete($criteria, $con);
-			LinkPeer::clearRelatedInstancePool();
+			StuffPeer::clearRelatedInstancePool();
 			$con->commit();
 			return $affectedRows;
 		} catch (PropelException $e) {
@@ -957,13 +972,13 @@ abstract class BaseLinkPeer {
 	}
 
 	/**
-	 * Validates all modified columns of given Link object.
+	 * Validates all modified columns of given Stuff object.
 	 * If parameter $columns is either a single column name or an array of column names
 	 * than only those columns are validated.
 	 *
 	 * NOTICE: This does not apply to primary or foreign keys for now.
 	 *
-	 * @param      Link $obj The object to validate.
+	 * @param      Stuff $obj The object to validate.
 	 * @param      mixed $cols Column name or array of column names.
 	 *
 	 * @return     mixed TRUE if all columns are valid or the error message of the first invalid column.
@@ -973,8 +988,8 @@ abstract class BaseLinkPeer {
 		$columns = array();
 
 		if ($cols) {
-			$dbMap = Propel::getDatabaseMap(LinkPeer::DATABASE_NAME);
-			$tableMap = $dbMap->getTable(LinkPeer::TABLE_NAME);
+			$dbMap = Propel::getDatabaseMap(StuffPeer::DATABASE_NAME);
+			$tableMap = $dbMap->getTable(StuffPeer::TABLE_NAME);
 
 			if (! is_array($cols)) {
 				$cols = array($cols);
@@ -990,7 +1005,7 @@ abstract class BaseLinkPeer {
 
 		}
 
-		return BasePeer::doValidate(LinkPeer::DATABASE_NAME, LinkPeer::TABLE_NAME, $columns);
+		return BasePeer::doValidate(StuffPeer::DATABASE_NAME, StuffPeer::TABLE_NAME, $columns);
 	}
 
 	/**
@@ -998,23 +1013,23 @@ abstract class BaseLinkPeer {
 	 *
 	 * @param      int $pk the primary key.
 	 * @param      PropelPDO $con the connection to use
-	 * @return     Link
+	 * @return     Stuff
 	 */
 	public static function retrieveByPK($pk, PropelPDO $con = null)
 	{
 
-		if (null !== ($obj = LinkPeer::getInstanceFromPool((string) $pk))) {
+		if (null !== ($obj = StuffPeer::getInstanceFromPool((string) $pk))) {
 			return $obj;
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(LinkPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(StuffPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
-		$criteria = new Criteria(LinkPeer::DATABASE_NAME);
-		$criteria->add(LinkPeer::ID, $pk);
+		$criteria = new Criteria(StuffPeer::DATABASE_NAME);
+		$criteria->add(StuffPeer::ID, $pk);
 
-		$v = LinkPeer::doSelect($criteria, $con);
+		$v = StuffPeer::doSelect($criteria, $con);
 
 		return !empty($v) > 0 ? $v[0] : null;
 	}
@@ -1030,16 +1045,16 @@ abstract class BaseLinkPeer {
 	public static function retrieveByPKs($pks, PropelPDO $con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(LinkPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(StuffPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
 		$objs = null;
 		if (empty($pks)) {
 			$objs = array();
 		} else {
-			$criteria = new Criteria(LinkPeer::DATABASE_NAME);
-			$criteria->add(LinkPeer::ID, $pks, Criteria::IN);
-			$objs = LinkPeer::doSelect($criteria, $con);
+			$criteria = new Criteria(StuffPeer::DATABASE_NAME);
+			$criteria->add(StuffPeer::ID, $pks, Criteria::IN);
+			$objs = StuffPeer::doSelect($criteria, $con);
 		}
 		return $objs;
 	}
@@ -1071,15 +1086,15 @@ abstract class BaseLinkPeer {
 	{
 	  if (preg_match('/^do(Select|Count)(Join(All(Except)?)?|Stmt)?/', $method, $match))
 	  {
-	    return sprintf('BaseLinkPeer:%s:%1$s', 'Count' == $match[1] ? 'doCount' : $match[0]);
+	    return sprintf('BaseStuffPeer:%s:%1$s', 'Count' == $match[1] ? 'doCount' : $match[0]);
 	  }
 	
 	  throw new LogicException(sprintf('Unrecognized function "%s"', $method));
 	}
 
-} // BaseLinkPeer
+} // BaseStuffPeer
 
 // This is the static code needed to register the TableMap for this table with the main Propel class.
 //
-BaseLinkPeer::buildTableMap();
+BaseStuffPeer::buildTableMap();
 

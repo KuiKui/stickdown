@@ -1,3 +1,5 @@
+<?php use_stylesheets_for_form($form) ?>
+<?php use_javascripts_for_form($form) ?>
 <div id="home" class="container">
   <div class="row">
     <div class="span12">

@@ -3,7 +3,7 @@
 
 
 /**
- * Skeleton subclass for representing a row from the 'link' table.
+ * Skeleton subclass for performing query and update operations on the 'board' table.
  *
  * 
  *
@@ -13,6 +13,6 @@
  *
  * @package    propel.generator.lib.model
  */
-class Link extends BaseLink {
+class BoardQuery extends BaseBoardQuery {
 
-} // Link
+} // BoardQuery

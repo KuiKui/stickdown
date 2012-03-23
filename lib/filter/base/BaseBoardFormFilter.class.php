@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Scope filter form base class.
+ * Board filter form base class.
  *
  * @package    stickdown
  * @subpackage filter
  * @author     Deuteron
  */
-abstract class BaseScopeFormFilter extends BaseFormFilterPropel
+abstract class BaseBoardFormFilter extends BaseFormFilterPropel
 {
   public function setup()
   {
@@ -16,6 +16,7 @@ abstract class BaseScopeFormFilter extends BaseFormFilterPropel
       'ip'         => new sfWidgetFormFilterInput(),
       'created_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'updated_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'deleted_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
     ));
 
     $this->setValidators(array(
@@ -23,9 +24,10 @@ abstract class BaseScopeFormFilter extends BaseFormFilterPropel
       'ip'         => new sfValidatorPass(array('required' => false)),
       'created_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'updated_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'deleted_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
     ));
 
-    $this->widgetSchema->setNameFormat('scope_filters[%s]');
+    $this->widgetSchema->setNameFormat('board_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -34,7 +36,7 @@ abstract class BaseScopeFormFilter extends BaseFormFilterPropel
 
   public function getModelName()
   {
-    return 'Scope';
+    return 'Board';
   }
 
   public function getFields()
@@ -45,6 +47,7 @@ abstract class BaseScopeFormFilter extends BaseFormFilterPropel
       'ip'         => 'Text',
       'created_at' => 'Date',
       'updated_at' => 'Date',
+      'deleted_at' => 'Date',
     );
   }
 }

@@ -1,3 +1,3 @@
 $(document).ready(function() {
-  $('#link_url').focus();
+  $('#stuff_content').focus();
 });

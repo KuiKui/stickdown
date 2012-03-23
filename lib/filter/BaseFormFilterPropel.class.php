@@ -3,9 +3,9 @@
 /**
  * Project filter form base class.
  *
- * @package    progressboard
+ * @package    stickdown
  * @subpackage filter
- * @author     Your name here
+ * @author     Deuteron
  */
 abstract class BaseFormFilterPropel extends sfFormFilterPropel
 {

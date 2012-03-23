@@ -80,15 +80,15 @@ body #home .features .feature p {
   font-size:1.1em;
   line-height:1.7em;
 }
-body #scope h2 { margin-bottom:20px; }
-body #scope form input {
+body #board h2 { margin-bottom:20px; }
+body #board form input {
   border-radius:3px;
   -webkit-border-radius:3px;
   -moz-border-radius:3px;
 }
-body #scope form input#link_url { width:400px; }
-body #scope #list { margin-top:25px; }
-body #scope #list th#date { width:100px; }
+body #board form input#stuff_content { width:400px; }
+body #board #list { margin-top:25px; }
+body #board #list th#date { width:100px; }
 body #footer {
   text-align:center;
   margin-top:25px;

@@ -3,7 +3,7 @@
 
 
 /**
- * This class defines the structure of the 'link' table.
+ * This class defines the structure of the 'board' table.
  *
  *
  *
@@ -14,13 +14,13 @@
  *
  * @package    propel.generator.lib.model.map
  */
-class LinkTableMap extends TableMap
+class BoardTableMap extends TableMap
 {
 
 	/**
 	 * The (dot-path) name of this class
 	 */
-	const CLASS_NAME = 'lib.model.map.LinkTableMap';
+	const CLASS_NAME = 'lib.model.map.BoardTableMap';
 
 	/**
 	 * Initialize the table attributes, columns and validators
@@ -32,21 +32,18 @@ class LinkTableMap extends TableMap
 	public function initialize()
 	{
 		// attributes
-		$this->setName('link');
-		$this->setPhpName('Link');
-		$this->setClassname('Link');
+		$this->setName('board');
+		$this->setPhpName('Board');
+		$this->setClassname('Board');
 		$this->setPackage('lib.model');
 		$this->setUseIdGenerator(true);
 		// columns
 		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
-		$this->addForeignKey('SCOPE_ID', 'ScopeId', 'INTEGER', 'scope', 'ID', true, 11, null);
-		$this->addColumn('URL', 'Url', 'VARCHAR', true, 255, null);
-		$this->addColumn('DETAILS', 'Details', 'VARCHAR', false, 64, null);
-		$this->addColumn('LABEL', 'Label', 'VARCHAR', false, 32, null);
+		$this->addColumn('NAME', 'Name', 'VARCHAR', true, 128, null);
 		$this->addColumn('IP', 'Ip', 'VARCHAR', false, 16, null);
-		$this->addColumn('ORDER', 'Order', 'INTEGER', false, 11, null);
 		$this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
 		$this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
+		$this->addColumn('DELETED_AT', 'DeletedAt', 'TIMESTAMP', false, null, null);
 		// validators
 	} // initialize()
 
@@ -55,7 +52,7 @@ class LinkTableMap extends TableMap
 	 */
 	public function buildRelations()
 	{
-		$this->addRelation('Scope', 'Scope', RelationMap::MANY_TO_ONE, array('scope_id' => 'id', ), 'CASCADE', 'RESTRICT');
+		$this->addRelation('Stuff', 'Stuff', RelationMap::ONE_TO_MANY, array('id' => 'board_id', ), 'CASCADE', 'RESTRICT', 'Stuffs');
 	} // buildRelations()
 
 	/**
@@ -73,4 +70,4 @@ class LinkTableMap extends TableMap
 		);
 	} // getBehaviors()
 
-} // LinkTableMap
+} // BoardTableMap

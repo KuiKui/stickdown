@@ -3,24 +3,28 @@ propel:
     package: lib.model
     defaultIdMethod: native
 
-  scope:
+  board:
     _attributes:
     id:             ~
     name:           { type: varchar, size: '128', required: true }
     ip:             { type: varchar, size: '16', required: false }
     created_at:     ~
     updated_at:     ~
+    deleted_at:     { type: timestamp, required: false }
     _uniques:
       unique_name:  [name]
 
-  link:
+  stuff:
     _attributes:
     id:           ~
-    scope_id:     { type: integer, size: '11', required: true, foreignTable: scope  , foreignReference: id, onDelete: cascade, onUpdate: restrict }
-    url:          { type: varchar, size: '255', required: true }
+    board_id:     { type: integer, size: '11', required: true, foreignTable: board, foreignReference: id, onDelete: cascade, onUpdate: restrict }
+    content:      { type: varchar, size: '255', required: true }
     details:      { type: varchar, size: '64', required: false }
     label:        { type: varchar, size: '32', required: false }
-    ip:           { type: varchar, size: '16', required: false }
+    starred:      { type: tinyint, size: '1', required: true, default: 0}
+    checked:      { type: tinyint, size: '1', required: true, default: 0}
     order:        { type: integer, size: '11', required: false }
+    ip:           { type: varchar, size: '16', required: false }
     created_at:   ~
     updated_at:   ~
+    deleted_at:   { type: timestamp, required: false }

@@ -2,25 +2,25 @@
 
 
 /**
- * Base class that represents a row from the 'link' table.
+ * Base class that represents a row from the 'stuff' table.
  *
  * 
  *
  * @package    propel.generator.lib.model.om
  */
-abstract class BaseLink extends BaseObject  implements Persistent
+abstract class BaseStuff extends BaseObject  implements Persistent
 {
 
 	/**
 	 * Peer class name
 	 */
-	const PEER = 'LinkPeer';
+	const PEER = 'StuffPeer';
 
 	/**
 	 * The Peer class.
 	 * Instance provides a convenient way of calling static methods on a class
 	 * that calling code may not be able to identify.
-	 * @var        LinkPeer
+	 * @var        StuffPeer
 	 */
 	protected static $peer;
 
@@ -31,16 +31,16 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	protected $id;
 
 	/**
-	 * The value for the scope_id field.
+	 * The value for the board_id field.
 	 * @var        int
 	 */
-	protected $scope_id;
+	protected $board_id;
 
 	/**
-	 * The value for the url field.
+	 * The value for the content field.
 	 * @var        string
 	 */
-	protected $url;
+	protected $content;
 
 	/**
 	 * The value for the details field.
@@ -55,16 +55,30 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	protected $label;
 
 	/**
-	 * The value for the ip field.
-	 * @var        string
+	 * The value for the starred field.
+	 * Note: this column has a database default value of: 0
+	 * @var        int
 	 */
-	protected $ip;
+	protected $starred;
+
+	/**
+	 * The value for the checked field.
+	 * Note: this column has a database default value of: 0
+	 * @var        int
+	 */
+	protected $checked;
 
 	/**
 	 * The value for the order field.
 	 * @var        int
 	 */
 	protected $order;
+
+	/**
+	 * The value for the ip field.
+	 * @var        string
+	 */
+	protected $ip;
 
 	/**
 	 * The value for the created_at field.
@@ -79,9 +93,15 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	protected $updated_at;
 
 	/**
-	 * @var        Scope
+	 * The value for the deleted_at field.
+	 * @var        string
 	 */
-	protected $aScope;
+	protected $deleted_at;
+
+	/**
+	 * @var        Board
+	 */
+	protected $aBoard;
 
 	/**
 	 * Flag to prevent endless save loop, if this object is referenced
@@ -98,6 +118,28 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	protected $alreadyInValidation = false;
 
 	/**
+	 * Applies default values to this object.
+	 * This method should be called from the object's constructor (or
+	 * equivalent initialization method).
+	 * @see        __construct()
+	 */
+	public function applyDefaultValues()
+	{
+		$this->starred = 0;
+		$this->checked = 0;
+	}
+
+	/**
+	 * Initializes internal state of BaseStuff object.
+	 * @see        applyDefaults()
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->applyDefaultValues();
+	}
+
+	/**
 	 * Get the [id] column value.
 	 * 
 	 * @return     int
@@ -108,23 +150,23 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	}
 
 	/**
-	 * Get the [scope_id] column value.
+	 * Get the [board_id] column value.
 	 * 
 	 * @return     int
 	 */
-	public function getScopeId()
+	public function getBoardId()
 	{
-		return $this->scope_id;
+		return $this->board_id;
 	}
 
 	/**
-	 * Get the [url] column value.
+	 * Get the [content] column value.
 	 * 
 	 * @return     string
 	 */
-	public function getUrl()
+	public function getContent()
 	{
-		return $this->url;
+		return $this->content;
 	}
 
 	/**
@@ -148,13 +190,23 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	}
 
 	/**
-	 * Get the [ip] column value.
+	 * Get the [starred] column value.
 	 * 
-	 * @return     string
+	 * @return     int
 	 */
-	public function getIp()
+	public function getStarred()
 	{
-		return $this->ip;
+		return $this->starred;
+	}
+
+	/**
+	 * Get the [checked] column value.
+	 * 
+	 * @return     int
+	 */
+	public function getChecked()
+	{
+		return $this->checked;
 	}
 
 	/**
@@ -165,6 +217,16 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	public function getOrder()
 	{
 		return $this->order;
+	}
+
+	/**
+	 * Get the [ip] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getIp()
+	{
+		return $this->ip;
 	}
 
 	/**
@@ -244,10 +306,48 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	}
 
 	/**
+	 * Get the [optionally formatted] temporal [deleted_at] column value.
+	 * 
+	 *
+	 * @param      string $format The date/time format string (either date()-style or strftime()-style).
+	 *							If format is NULL, then the raw DateTime object will be returned.
+	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+	 * @throws     PropelException - if unable to parse/validate the date/time value.
+	 */
+	public function getDeletedAt($format = 'Y-m-d H:i:s')
+	{
+		if ($this->deleted_at === null) {
+			return null;
+		}
+
+
+		if ($this->deleted_at === '0000-00-00 00:00:00') {
+			// while technically this is not a default value of NULL,
+			// this seems to be closest in meaning.
+			return null;
+		} else {
+			try {
+				$dt = new DateTime($this->deleted_at);
+			} catch (Exception $x) {
+				throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->deleted_at, true), $x);
+			}
+		}
+
+		if ($format === null) {
+			// Because propel.useDateTimeClass is TRUE, we return a DateTime object.
+			return $dt;
+		} elseif (strpos($format, '%') !== false) {
+			return strftime($format, $dt->format('U'));
+		} else {
+			return $dt->format($format);
+		}
+	}
+
+	/**
 	 * Set the value of [id] column.
 	 * 
 	 * @param      int $v new value
-	 * @return     Link The current object (for fluent API support)
+	 * @return     Stuff The current object (for fluent API support)
 	 */
 	public function setId($v)
 	{
@@ -257,61 +357,61 @@ abstract class BaseLink extends BaseObject  implements Persistent
 
 		if ($this->id !== $v) {
 			$this->id = $v;
-			$this->modifiedColumns[] = LinkPeer::ID;
+			$this->modifiedColumns[] = StuffPeer::ID;
 		}
 
 		return $this;
 	} // setId()
 
 	/**
-	 * Set the value of [scope_id] column.
+	 * Set the value of [board_id] column.
 	 * 
 	 * @param      int $v new value
-	 * @return     Link The current object (for fluent API support)
+	 * @return     Stuff The current object (for fluent API support)
 	 */
-	public function setScopeId($v)
+	public function setBoardId($v)
 	{
 		if ($v !== null) {
 			$v = (int) $v;
 		}
 
-		if ($this->scope_id !== $v) {
-			$this->scope_id = $v;
-			$this->modifiedColumns[] = LinkPeer::SCOPE_ID;
+		if ($this->board_id !== $v) {
+			$this->board_id = $v;
+			$this->modifiedColumns[] = StuffPeer::BOARD_ID;
 		}
 
-		if ($this->aScope !== null && $this->aScope->getId() !== $v) {
-			$this->aScope = null;
+		if ($this->aBoard !== null && $this->aBoard->getId() !== $v) {
+			$this->aBoard = null;
 		}
 
 		return $this;
-	} // setScopeId()
+	} // setBoardId()
 
 	/**
-	 * Set the value of [url] column.
+	 * Set the value of [content] column.
 	 * 
 	 * @param      string $v new value
-	 * @return     Link The current object (for fluent API support)
+	 * @return     Stuff The current object (for fluent API support)
 	 */
-	public function setUrl($v)
+	public function setContent($v)
 	{
 		if ($v !== null) {
 			$v = (string) $v;
 		}
 
-		if ($this->url !== $v) {
-			$this->url = $v;
-			$this->modifiedColumns[] = LinkPeer::URL;
+		if ($this->content !== $v) {
+			$this->content = $v;
+			$this->modifiedColumns[] = StuffPeer::CONTENT;
 		}
 
 		return $this;
-	} // setUrl()
+	} // setContent()
 
 	/**
 	 * Set the value of [details] column.
 	 * 
 	 * @param      string $v new value
-	 * @return     Link The current object (for fluent API support)
+	 * @return     Stuff The current object (for fluent API support)
 	 */
 	public function setDetails($v)
 	{
@@ -321,7 +421,7 @@ abstract class BaseLink extends BaseObject  implements Persistent
 
 		if ($this->details !== $v) {
 			$this->details = $v;
-			$this->modifiedColumns[] = LinkPeer::DETAILS;
+			$this->modifiedColumns[] = StuffPeer::DETAILS;
 		}
 
 		return $this;
@@ -331,7 +431,7 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	 * Set the value of [label] column.
 	 * 
 	 * @param      string $v new value
-	 * @return     Link The current object (for fluent API support)
+	 * @return     Stuff The current object (for fluent API support)
 	 */
 	public function setLabel($v)
 	{
@@ -341,37 +441,57 @@ abstract class BaseLink extends BaseObject  implements Persistent
 
 		if ($this->label !== $v) {
 			$this->label = $v;
-			$this->modifiedColumns[] = LinkPeer::LABEL;
+			$this->modifiedColumns[] = StuffPeer::LABEL;
 		}
 
 		return $this;
 	} // setLabel()
 
 	/**
-	 * Set the value of [ip] column.
+	 * Set the value of [starred] column.
 	 * 
-	 * @param      string $v new value
-	 * @return     Link The current object (for fluent API support)
+	 * @param      int $v new value
+	 * @return     Stuff The current object (for fluent API support)
 	 */
-	public function setIp($v)
+	public function setStarred($v)
 	{
 		if ($v !== null) {
-			$v = (string) $v;
+			$v = (int) $v;
 		}
 
-		if ($this->ip !== $v) {
-			$this->ip = $v;
-			$this->modifiedColumns[] = LinkPeer::IP;
+		if ($this->starred !== $v) {
+			$this->starred = $v;
+			$this->modifiedColumns[] = StuffPeer::STARRED;
 		}
 
 		return $this;
-	} // setIp()
+	} // setStarred()
+
+	/**
+	 * Set the value of [checked] column.
+	 * 
+	 * @param      int $v new value
+	 * @return     Stuff The current object (for fluent API support)
+	 */
+	public function setChecked($v)
+	{
+		if ($v !== null) {
+			$v = (int) $v;
+		}
+
+		if ($this->checked !== $v) {
+			$this->checked = $v;
+			$this->modifiedColumns[] = StuffPeer::CHECKED;
+		}
+
+		return $this;
+	} // setChecked()
 
 	/**
 	 * Set the value of [order] column.
 	 * 
 	 * @param      int $v new value
-	 * @return     Link The current object (for fluent API support)
+	 * @return     Stuff The current object (for fluent API support)
 	 */
 	public function setOrder($v)
 	{
@@ -381,18 +501,38 @@ abstract class BaseLink extends BaseObject  implements Persistent
 
 		if ($this->order !== $v) {
 			$this->order = $v;
-			$this->modifiedColumns[] = LinkPeer::ORDER;
+			$this->modifiedColumns[] = StuffPeer::ORDER;
 		}
 
 		return $this;
 	} // setOrder()
 
 	/**
+	 * Set the value of [ip] column.
+	 * 
+	 * @param      string $v new value
+	 * @return     Stuff The current object (for fluent API support)
+	 */
+	public function setIp($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->ip !== $v) {
+			$this->ip = $v;
+			$this->modifiedColumns[] = StuffPeer::IP;
+		}
+
+		return $this;
+	} // setIp()
+
+	/**
 	 * Sets the value of [created_at] column to a normalized version of the date/time value specified.
 	 * 
 	 * @param      mixed $v string, integer (timestamp), or DateTime value.
 	 *               Empty strings are treated as NULL.
-	 * @return     Link The current object (for fluent API support)
+	 * @return     Stuff The current object (for fluent API support)
 	 */
 	public function setCreatedAt($v)
 	{
@@ -402,7 +542,7 @@ abstract class BaseLink extends BaseObject  implements Persistent
 			$newDateAsString = $dt ? $dt->format('Y-m-d H:i:s') : null;
 			if ($currentDateAsString !== $newDateAsString) {
 				$this->created_at = $newDateAsString;
-				$this->modifiedColumns[] = LinkPeer::CREATED_AT;
+				$this->modifiedColumns[] = StuffPeer::CREATED_AT;
 			}
 		} // if either are not null
 
@@ -414,7 +554,7 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	 * 
 	 * @param      mixed $v string, integer (timestamp), or DateTime value.
 	 *               Empty strings are treated as NULL.
-	 * @return     Link The current object (for fluent API support)
+	 * @return     Stuff The current object (for fluent API support)
 	 */
 	public function setUpdatedAt($v)
 	{
@@ -424,12 +564,34 @@ abstract class BaseLink extends BaseObject  implements Persistent
 			$newDateAsString = $dt ? $dt->format('Y-m-d H:i:s') : null;
 			if ($currentDateAsString !== $newDateAsString) {
 				$this->updated_at = $newDateAsString;
-				$this->modifiedColumns[] = LinkPeer::UPDATED_AT;
+				$this->modifiedColumns[] = StuffPeer::UPDATED_AT;
 			}
 		} // if either are not null
 
 		return $this;
 	} // setUpdatedAt()
+
+	/**
+	 * Sets the value of [deleted_at] column to a normalized version of the date/time value specified.
+	 * 
+	 * @param      mixed $v string, integer (timestamp), or DateTime value.
+	 *               Empty strings are treated as NULL.
+	 * @return     Stuff The current object (for fluent API support)
+	 */
+	public function setDeletedAt($v)
+	{
+		$dt = PropelDateTime::newInstance($v, null, 'DateTime');
+		if ($this->deleted_at !== null || $dt !== null) {
+			$currentDateAsString = ($this->deleted_at !== null && $tmpDt = new DateTime($this->deleted_at)) ? $tmpDt->format('Y-m-d H:i:s') : null;
+			$newDateAsString = $dt ? $dt->format('Y-m-d H:i:s') : null;
+			if ($currentDateAsString !== $newDateAsString) {
+				$this->deleted_at = $newDateAsString;
+				$this->modifiedColumns[] = StuffPeer::DELETED_AT;
+			}
+		} // if either are not null
+
+		return $this;
+	} // setDeletedAt()
 
 	/**
 	 * Indicates whether the columns in this object are only set to default values.
@@ -441,6 +603,14 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	 */
 	public function hasOnlyDefaultValues()
 	{
+			if ($this->starred !== 0) {
+				return false;
+			}
+
+			if ($this->checked !== 0) {
+				return false;
+			}
+
 		// otherwise, everything was equal, so return TRUE
 		return true;
 	} // hasOnlyDefaultValues()
@@ -464,14 +634,17 @@ abstract class BaseLink extends BaseObject  implements Persistent
 		try {
 
 			$this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
-			$this->scope_id = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
-			$this->url = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
+			$this->board_id = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
+			$this->content = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
 			$this->details = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
 			$this->label = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-			$this->ip = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-			$this->order = ($row[$startcol + 6] !== null) ? (int) $row[$startcol + 6] : null;
-			$this->created_at = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
-			$this->updated_at = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
+			$this->starred = ($row[$startcol + 5] !== null) ? (int) $row[$startcol + 5] : null;
+			$this->checked = ($row[$startcol + 6] !== null) ? (int) $row[$startcol + 6] : null;
+			$this->order = ($row[$startcol + 7] !== null) ? (int) $row[$startcol + 7] : null;
+			$this->ip = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
+			$this->created_at = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
+			$this->updated_at = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
+			$this->deleted_at = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -480,10 +653,10 @@ abstract class BaseLink extends BaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 9; // 9 = LinkPeer::NUM_HYDRATE_COLUMNS.
+			return $startcol + 12; // 12 = StuffPeer::NUM_HYDRATE_COLUMNS.
 
 		} catch (Exception $e) {
-			throw new PropelException("Error populating Link object", $e);
+			throw new PropelException("Error populating Stuff object", $e);
 		}
 	}
 
@@ -503,8 +676,8 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	public function ensureConsistency()
 	{
 
-		if ($this->aScope !== null && $this->scope_id !== $this->aScope->getId()) {
-			$this->aScope = null;
+		if ($this->aBoard !== null && $this->board_id !== $this->aBoard->getId()) {
+			$this->aBoard = null;
 		}
 	} // ensureConsistency
 
@@ -529,13 +702,13 @@ abstract class BaseLink extends BaseObject  implements Persistent
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(LinkPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(StuffPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
 		// We don't need to alter the object instance pool; we're just modifying this instance
 		// already in the pool.
 
-		$stmt = LinkPeer::doSelectStmt($this->buildPkeyCriteria(), $con);
+		$stmt = StuffPeer::doSelectStmt($this->buildPkeyCriteria(), $con);
 		$row = $stmt->fetch(PDO::FETCH_NUM);
 		$stmt->closeCursor();
 		if (!$row) {
@@ -545,7 +718,7 @@ abstract class BaseLink extends BaseObject  implements Persistent
 
 		if ($deep) {  // also de-associate any related objects?
 
-			$this->aScope = null;
+			$this->aBoard = null;
 		} // if (deep)
 	}
 
@@ -565,16 +738,16 @@ abstract class BaseLink extends BaseObject  implements Persistent
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(LinkPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(StuffPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		$con->beginTransaction();
 		try {
-			$deleteQuery = LinkQuery::create()
+			$deleteQuery = StuffQuery::create()
 				->filterByPrimaryKey($this->getPrimaryKey());
 			$ret = $this->preDelete($con);
 			// symfony_behaviors behavior
-			foreach (sfMixer::getCallables('BaseLink:delete:pre') as $callable)
+			foreach (sfMixer::getCallables('BaseStuff:delete:pre') as $callable)
 			{
 			  if (call_user_func($callable, $this, $con))
 			  {
@@ -587,7 +760,7 @@ abstract class BaseLink extends BaseObject  implements Persistent
 				$deleteQuery->delete($con);
 				$this->postDelete($con);
 				// symfony_behaviors behavior
-				foreach (sfMixer::getCallables('BaseLink:delete:post') as $callable)
+				foreach (sfMixer::getCallables('BaseStuff:delete:post') as $callable)
 				{
 				  call_user_func($callable, $this, $con);
 				}
@@ -623,7 +796,7 @@ abstract class BaseLink extends BaseObject  implements Persistent
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(LinkPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(StuffPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		$con->beginTransaction();
@@ -631,7 +804,7 @@ abstract class BaseLink extends BaseObject  implements Persistent
 		try {
 			$ret = $this->preSave($con);
 			// symfony_behaviors behavior
-			foreach (sfMixer::getCallables('BaseLink:save:pre') as $callable)
+			foreach (sfMixer::getCallables('BaseStuff:save:pre') as $callable)
 			{
 			  if (is_integer($affectedRows = call_user_func($callable, $this, $con)))
 			  {
@@ -641,14 +814,14 @@ abstract class BaseLink extends BaseObject  implements Persistent
 			}
 
 			// symfony_timestampable behavior
-			if ($this->isModified() && !$this->isColumnModified(LinkPeer::UPDATED_AT))
+			if ($this->isModified() && !$this->isColumnModified(StuffPeer::UPDATED_AT))
 			{
 				$this->setUpdatedAt(time());
 			}
 			if ($isInsert) {
 				$ret = $ret && $this->preInsert($con);
 				// symfony_timestampable behavior
-				if (!$this->isColumnModified(LinkPeer::CREATED_AT))
+				if (!$this->isColumnModified(StuffPeer::CREATED_AT))
 				{
 				  $this->setCreatedAt(time());
 				}
@@ -665,12 +838,12 @@ abstract class BaseLink extends BaseObject  implements Persistent
 				}
 				$this->postSave($con);
 				// symfony_behaviors behavior
-				foreach (sfMixer::getCallables('BaseLink:save:post') as $callable)
+				foreach (sfMixer::getCallables('BaseStuff:save:post') as $callable)
 				{
 				  call_user_func($callable, $this, $con, $affectedRows);
 				}
 
-				LinkPeer::addInstanceToPool($this);
+				StuffPeer::addInstanceToPool($this);
 			} else {
 				$affectedRows = 0;
 			}
@@ -704,11 +877,11 @@ abstract class BaseLink extends BaseObject  implements Persistent
 			// method.  This object relates to these object(s) by a
 			// foreign key reference.
 
-			if ($this->aScope !== null) {
-				if ($this->aScope->isModified() || $this->aScope->isNew()) {
-					$affectedRows += $this->aScope->save($con);
+			if ($this->aBoard !== null) {
+				if ($this->aBoard->isModified() || $this->aBoard->isNew()) {
+					$affectedRows += $this->aBoard->save($con);
 				}
-				$this->setScope($this->aScope);
+				$this->setBoard($this->aBoard);
 			}
 
 			if ($this->isNew() || $this->isModified()) {
@@ -741,42 +914,51 @@ abstract class BaseLink extends BaseObject  implements Persistent
 		$modifiedColumns = array();
 		$index = 0;
 
-		$this->modifiedColumns[] = LinkPeer::ID;
+		$this->modifiedColumns[] = StuffPeer::ID;
 		if (null !== $this->id) {
-			throw new PropelException('Cannot insert a value for auto-increment primary key (' . LinkPeer::ID . ')');
+			throw new PropelException('Cannot insert a value for auto-increment primary key (' . StuffPeer::ID . ')');
 		}
 
 		 // check the columns in natural order for more readable SQL queries
-		if ($this->isColumnModified(LinkPeer::ID)) {
+		if ($this->isColumnModified(StuffPeer::ID)) {
 			$modifiedColumns[':p' . $index++]  = '`ID`';
 		}
-		if ($this->isColumnModified(LinkPeer::SCOPE_ID)) {
-			$modifiedColumns[':p' . $index++]  = '`SCOPE_ID`';
+		if ($this->isColumnModified(StuffPeer::BOARD_ID)) {
+			$modifiedColumns[':p' . $index++]  = '`BOARD_ID`';
 		}
-		if ($this->isColumnModified(LinkPeer::URL)) {
-			$modifiedColumns[':p' . $index++]  = '`URL`';
+		if ($this->isColumnModified(StuffPeer::CONTENT)) {
+			$modifiedColumns[':p' . $index++]  = '`CONTENT`';
 		}
-		if ($this->isColumnModified(LinkPeer::DETAILS)) {
+		if ($this->isColumnModified(StuffPeer::DETAILS)) {
 			$modifiedColumns[':p' . $index++]  = '`DETAILS`';
 		}
-		if ($this->isColumnModified(LinkPeer::LABEL)) {
+		if ($this->isColumnModified(StuffPeer::LABEL)) {
 			$modifiedColumns[':p' . $index++]  = '`LABEL`';
 		}
-		if ($this->isColumnModified(LinkPeer::IP)) {
-			$modifiedColumns[':p' . $index++]  = '`IP`';
+		if ($this->isColumnModified(StuffPeer::STARRED)) {
+			$modifiedColumns[':p' . $index++]  = '`STARRED`';
 		}
-		if ($this->isColumnModified(LinkPeer::ORDER)) {
+		if ($this->isColumnModified(StuffPeer::CHECKED)) {
+			$modifiedColumns[':p' . $index++]  = '`CHECKED`';
+		}
+		if ($this->isColumnModified(StuffPeer::ORDER)) {
 			$modifiedColumns[':p' . $index++]  = '`ORDER`';
 		}
-		if ($this->isColumnModified(LinkPeer::CREATED_AT)) {
+		if ($this->isColumnModified(StuffPeer::IP)) {
+			$modifiedColumns[':p' . $index++]  = '`IP`';
+		}
+		if ($this->isColumnModified(StuffPeer::CREATED_AT)) {
 			$modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
 		}
-		if ($this->isColumnModified(LinkPeer::UPDATED_AT)) {
+		if ($this->isColumnModified(StuffPeer::UPDATED_AT)) {
 			$modifiedColumns[':p' . $index++]  = '`UPDATED_AT`';
+		}
+		if ($this->isColumnModified(StuffPeer::DELETED_AT)) {
+			$modifiedColumns[':p' . $index++]  = '`DELETED_AT`';
 		}
 
 		$sql = sprintf(
-			'INSERT INTO `link` (%s) VALUES (%s)',
+			'INSERT INTO `stuff` (%s) VALUES (%s)',
 			implode(', ', $modifiedColumns),
 			implode(', ', array_keys($modifiedColumns))
 		);
@@ -788,11 +970,11 @@ abstract class BaseLink extends BaseObject  implements Persistent
 					case '`ID`':
 						$stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
 						break;
-					case '`SCOPE_ID`':
-						$stmt->bindValue($identifier, $this->scope_id, PDO::PARAM_INT);
+					case '`BOARD_ID`':
+						$stmt->bindValue($identifier, $this->board_id, PDO::PARAM_INT);
 						break;
-					case '`URL`':
-						$stmt->bindValue($identifier, $this->url, PDO::PARAM_STR);
+					case '`CONTENT`':
+						$stmt->bindValue($identifier, $this->content, PDO::PARAM_STR);
 						break;
 					case '`DETAILS`':
 						$stmt->bindValue($identifier, $this->details, PDO::PARAM_STR);
@@ -800,17 +982,26 @@ abstract class BaseLink extends BaseObject  implements Persistent
 					case '`LABEL`':
 						$stmt->bindValue($identifier, $this->label, PDO::PARAM_STR);
 						break;
-					case '`IP`':
-						$stmt->bindValue($identifier, $this->ip, PDO::PARAM_STR);
+					case '`STARRED`':
+						$stmt->bindValue($identifier, $this->starred, PDO::PARAM_INT);
+						break;
+					case '`CHECKED`':
+						$stmt->bindValue($identifier, $this->checked, PDO::PARAM_INT);
 						break;
 					case '`ORDER`':
 						$stmt->bindValue($identifier, $this->order, PDO::PARAM_INT);
+						break;
+					case '`IP`':
+						$stmt->bindValue($identifier, $this->ip, PDO::PARAM_STR);
 						break;
 					case '`CREATED_AT`':
 						$stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
 						break;
 					case '`UPDATED_AT`':
 						$stmt->bindValue($identifier, $this->updated_at, PDO::PARAM_STR);
+						break;
+					case '`DELETED_AT`':
+						$stmt->bindValue($identifier, $this->deleted_at, PDO::PARAM_STR);
 						break;
 				}
 			}
@@ -909,14 +1100,14 @@ abstract class BaseLink extends BaseObject  implements Persistent
 			// method.  This object relates to these object(s) by a
 			// foreign key reference.
 
-			if ($this->aScope !== null) {
-				if (!$this->aScope->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aScope->getValidationFailures());
+			if ($this->aBoard !== null) {
+				if (!$this->aBoard->validate($columns)) {
+					$failureMap = array_merge($failureMap, $this->aBoard->getValidationFailures());
 				}
 			}
 
 
-			if (($retval = LinkPeer::doValidate($this, $columns)) !== true) {
+			if (($retval = StuffPeer::doValidate($this, $columns)) !== true) {
 				$failureMap = array_merge($failureMap, $retval);
 			}
 
@@ -939,7 +1130,7 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	 */
 	public function getByName($name, $type = BasePeer::TYPE_PHPNAME)
 	{
-		$pos = LinkPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+		$pos = StuffPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		$field = $this->getByPosition($pos);
 		return $field;
 	}
@@ -958,10 +1149,10 @@ abstract class BaseLink extends BaseObject  implements Persistent
 				return $this->getId();
 				break;
 			case 1:
-				return $this->getScopeId();
+				return $this->getBoardId();
 				break;
 			case 2:
-				return $this->getUrl();
+				return $this->getContent();
 				break;
 			case 3:
 				return $this->getDetails();
@@ -970,16 +1161,25 @@ abstract class BaseLink extends BaseObject  implements Persistent
 				return $this->getLabel();
 				break;
 			case 5:
-				return $this->getIp();
+				return $this->getStarred();
 				break;
 			case 6:
-				return $this->getOrder();
+				return $this->getChecked();
 				break;
 			case 7:
-				return $this->getCreatedAt();
+				return $this->getOrder();
 				break;
 			case 8:
+				return $this->getIp();
+				break;
+			case 9:
+				return $this->getCreatedAt();
+				break;
+			case 10:
 				return $this->getUpdatedAt();
+				break;
+			case 11:
+				return $this->getDeletedAt();
 				break;
 			default:
 				return null;
@@ -1004,25 +1204,28 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	 */
 	public function toArray($keyType = BasePeer::TYPE_PHPNAME, $includeLazyLoadColumns = true, $alreadyDumpedObjects = array(), $includeForeignObjects = false)
 	{
-		if (isset($alreadyDumpedObjects['Link'][$this->getPrimaryKey()])) {
+		if (isset($alreadyDumpedObjects['Stuff'][$this->getPrimaryKey()])) {
 			return '*RECURSION*';
 		}
-		$alreadyDumpedObjects['Link'][$this->getPrimaryKey()] = true;
-		$keys = LinkPeer::getFieldNames($keyType);
+		$alreadyDumpedObjects['Stuff'][$this->getPrimaryKey()] = true;
+		$keys = StuffPeer::getFieldNames($keyType);
 		$result = array(
 			$keys[0] => $this->getId(),
-			$keys[1] => $this->getScopeId(),
-			$keys[2] => $this->getUrl(),
+			$keys[1] => $this->getBoardId(),
+			$keys[2] => $this->getContent(),
 			$keys[3] => $this->getDetails(),
 			$keys[4] => $this->getLabel(),
-			$keys[5] => $this->getIp(),
-			$keys[6] => $this->getOrder(),
-			$keys[7] => $this->getCreatedAt(),
-			$keys[8] => $this->getUpdatedAt(),
+			$keys[5] => $this->getStarred(),
+			$keys[6] => $this->getChecked(),
+			$keys[7] => $this->getOrder(),
+			$keys[8] => $this->getIp(),
+			$keys[9] => $this->getCreatedAt(),
+			$keys[10] => $this->getUpdatedAt(),
+			$keys[11] => $this->getDeletedAt(),
 		);
 		if ($includeForeignObjects) {
-			if (null !== $this->aScope) {
-				$result['Scope'] = $this->aScope->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+			if (null !== $this->aBoard) {
+				$result['Board'] = $this->aBoard->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
 			}
 		}
 		return $result;
@@ -1040,7 +1243,7 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	 */
 	public function setByName($name, $value, $type = BasePeer::TYPE_PHPNAME)
 	{
-		$pos = LinkPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+		$pos = StuffPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		return $this->setByPosition($pos, $value);
 	}
 
@@ -1059,10 +1262,10 @@ abstract class BaseLink extends BaseObject  implements Persistent
 				$this->setId($value);
 				break;
 			case 1:
-				$this->setScopeId($value);
+				$this->setBoardId($value);
 				break;
 			case 2:
-				$this->setUrl($value);
+				$this->setContent($value);
 				break;
 			case 3:
 				$this->setDetails($value);
@@ -1071,16 +1274,25 @@ abstract class BaseLink extends BaseObject  implements Persistent
 				$this->setLabel($value);
 				break;
 			case 5:
-				$this->setIp($value);
+				$this->setStarred($value);
 				break;
 			case 6:
-				$this->setOrder($value);
+				$this->setChecked($value);
 				break;
 			case 7:
-				$this->setCreatedAt($value);
+				$this->setOrder($value);
 				break;
 			case 8:
+				$this->setIp($value);
+				break;
+			case 9:
+				$this->setCreatedAt($value);
+				break;
+			case 10:
 				$this->setUpdatedAt($value);
+				break;
+			case 11:
+				$this->setDeletedAt($value);
 				break;
 		} // switch()
 	}
@@ -1104,17 +1316,20 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	 */
 	public function fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME)
 	{
-		$keys = LinkPeer::getFieldNames($keyType);
+		$keys = StuffPeer::getFieldNames($keyType);
 
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
-		if (array_key_exists($keys[1], $arr)) $this->setScopeId($arr[$keys[1]]);
-		if (array_key_exists($keys[2], $arr)) $this->setUrl($arr[$keys[2]]);
+		if (array_key_exists($keys[1], $arr)) $this->setBoardId($arr[$keys[1]]);
+		if (array_key_exists($keys[2], $arr)) $this->setContent($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setDetails($arr[$keys[3]]);
 		if (array_key_exists($keys[4], $arr)) $this->setLabel($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setIp($arr[$keys[5]]);
-		if (array_key_exists($keys[6], $arr)) $this->setOrder($arr[$keys[6]]);
-		if (array_key_exists($keys[7], $arr)) $this->setCreatedAt($arr[$keys[7]]);
-		if (array_key_exists($keys[8], $arr)) $this->setUpdatedAt($arr[$keys[8]]);
+		if (array_key_exists($keys[5], $arr)) $this->setStarred($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setChecked($arr[$keys[6]]);
+		if (array_key_exists($keys[7], $arr)) $this->setOrder($arr[$keys[7]]);
+		if (array_key_exists($keys[8], $arr)) $this->setIp($arr[$keys[8]]);
+		if (array_key_exists($keys[9], $arr)) $this->setCreatedAt($arr[$keys[9]]);
+		if (array_key_exists($keys[10], $arr)) $this->setUpdatedAt($arr[$keys[10]]);
+		if (array_key_exists($keys[11], $arr)) $this->setDeletedAt($arr[$keys[11]]);
 	}
 
 	/**
@@ -1124,17 +1339,20 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	 */
 	public function buildCriteria()
 	{
-		$criteria = new Criteria(LinkPeer::DATABASE_NAME);
+		$criteria = new Criteria(StuffPeer::DATABASE_NAME);
 
-		if ($this->isColumnModified(LinkPeer::ID)) $criteria->add(LinkPeer::ID, $this->id);
-		if ($this->isColumnModified(LinkPeer::SCOPE_ID)) $criteria->add(LinkPeer::SCOPE_ID, $this->scope_id);
-		if ($this->isColumnModified(LinkPeer::URL)) $criteria->add(LinkPeer::URL, $this->url);
-		if ($this->isColumnModified(LinkPeer::DETAILS)) $criteria->add(LinkPeer::DETAILS, $this->details);
-		if ($this->isColumnModified(LinkPeer::LABEL)) $criteria->add(LinkPeer::LABEL, $this->label);
-		if ($this->isColumnModified(LinkPeer::IP)) $criteria->add(LinkPeer::IP, $this->ip);
-		if ($this->isColumnModified(LinkPeer::ORDER)) $criteria->add(LinkPeer::ORDER, $this->order);
-		if ($this->isColumnModified(LinkPeer::CREATED_AT)) $criteria->add(LinkPeer::CREATED_AT, $this->created_at);
-		if ($this->isColumnModified(LinkPeer::UPDATED_AT)) $criteria->add(LinkPeer::UPDATED_AT, $this->updated_at);
+		if ($this->isColumnModified(StuffPeer::ID)) $criteria->add(StuffPeer::ID, $this->id);
+		if ($this->isColumnModified(StuffPeer::BOARD_ID)) $criteria->add(StuffPeer::BOARD_ID, $this->board_id);
+		if ($this->isColumnModified(StuffPeer::CONTENT)) $criteria->add(StuffPeer::CONTENT, $this->content);
+		if ($this->isColumnModified(StuffPeer::DETAILS)) $criteria->add(StuffPeer::DETAILS, $this->details);
+		if ($this->isColumnModified(StuffPeer::LABEL)) $criteria->add(StuffPeer::LABEL, $this->label);
+		if ($this->isColumnModified(StuffPeer::STARRED)) $criteria->add(StuffPeer::STARRED, $this->starred);
+		if ($this->isColumnModified(StuffPeer::CHECKED)) $criteria->add(StuffPeer::CHECKED, $this->checked);
+		if ($this->isColumnModified(StuffPeer::ORDER)) $criteria->add(StuffPeer::ORDER, $this->order);
+		if ($this->isColumnModified(StuffPeer::IP)) $criteria->add(StuffPeer::IP, $this->ip);
+		if ($this->isColumnModified(StuffPeer::CREATED_AT)) $criteria->add(StuffPeer::CREATED_AT, $this->created_at);
+		if ($this->isColumnModified(StuffPeer::UPDATED_AT)) $criteria->add(StuffPeer::UPDATED_AT, $this->updated_at);
+		if ($this->isColumnModified(StuffPeer::DELETED_AT)) $criteria->add(StuffPeer::DELETED_AT, $this->deleted_at);
 
 		return $criteria;
 	}
@@ -1149,8 +1367,8 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	 */
 	public function buildPkeyCriteria()
 	{
-		$criteria = new Criteria(LinkPeer::DATABASE_NAME);
-		$criteria->add(LinkPeer::ID, $this->id);
+		$criteria = new Criteria(StuffPeer::DATABASE_NAME);
+		$criteria->add(StuffPeer::ID, $this->id);
 
 		return $criteria;
 	}
@@ -1190,21 +1408,24 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	 * If desired, this method can also make copies of all associated (fkey referrers)
 	 * objects.
 	 *
-	 * @param      object $copyObj An object of Link (or compatible) type.
+	 * @param      object $copyObj An object of Stuff (or compatible) type.
 	 * @param      boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
 	 * @param      boolean $makeNew Whether to reset autoincrement PKs and make the object new.
 	 * @throws     PropelException
 	 */
 	public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
 	{
-		$copyObj->setScopeId($this->getScopeId());
-		$copyObj->setUrl($this->getUrl());
+		$copyObj->setBoardId($this->getBoardId());
+		$copyObj->setContent($this->getContent());
 		$copyObj->setDetails($this->getDetails());
 		$copyObj->setLabel($this->getLabel());
-		$copyObj->setIp($this->getIp());
+		$copyObj->setStarred($this->getStarred());
+		$copyObj->setChecked($this->getChecked());
 		$copyObj->setOrder($this->getOrder());
+		$copyObj->setIp($this->getIp());
 		$copyObj->setCreatedAt($this->getCreatedAt());
 		$copyObj->setUpdatedAt($this->getUpdatedAt());
+		$copyObj->setDeletedAt($this->getDeletedAt());
 		if ($makeNew) {
 			$copyObj->setNew(true);
 			$copyObj->setId(NULL); // this is a auto-increment column, so set to default value
@@ -1220,7 +1441,7 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	 * objects.
 	 *
 	 * @param      boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-	 * @return     Link Clone of current object.
+	 * @return     Stuff Clone of current object.
 	 * @throws     PropelException
 	 */
 	public function copy($deepCopy = false)
@@ -1239,37 +1460,37 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	 * same instance for all member of this class. The method could therefore
 	 * be static, but this would prevent one from overriding the behavior.
 	 *
-	 * @return     LinkPeer
+	 * @return     StuffPeer
 	 */
 	public function getPeer()
 	{
 		if (self::$peer === null) {
-			self::$peer = new LinkPeer();
+			self::$peer = new StuffPeer();
 		}
 		return self::$peer;
 	}
 
 	/**
-	 * Declares an association between this object and a Scope object.
+	 * Declares an association between this object and a Board object.
 	 *
-	 * @param      Scope $v
-	 * @return     Link The current object (for fluent API support)
+	 * @param      Board $v
+	 * @return     Stuff The current object (for fluent API support)
 	 * @throws     PropelException
 	 */
-	public function setScope(Scope $v = null)
+	public function setBoard(Board $v = null)
 	{
 		if ($v === null) {
-			$this->setScopeId(NULL);
+			$this->setBoardId(NULL);
 		} else {
-			$this->setScopeId($v->getId());
+			$this->setBoardId($v->getId());
 		}
 
-		$this->aScope = $v;
+		$this->aBoard = $v;
 
 		// Add binding for other direction of this n:n relationship.
-		// If this object has already been added to the Scope object, it will not be re-added.
+		// If this object has already been added to the Board object, it will not be re-added.
 		if ($v !== null) {
-			$v->addLink($this);
+			$v->addStuff($this);
 		}
 
 		return $this;
@@ -1277,25 +1498,25 @@ abstract class BaseLink extends BaseObject  implements Persistent
 
 
 	/**
-	 * Get the associated Scope object
+	 * Get the associated Board object
 	 *
 	 * @param      PropelPDO Optional Connection object.
-	 * @return     Scope The associated Scope object.
+	 * @return     Board The associated Board object.
 	 * @throws     PropelException
 	 */
-	public function getScope(PropelPDO $con = null)
+	public function getBoard(PropelPDO $con = null)
 	{
-		if ($this->aScope === null && ($this->scope_id !== null)) {
-			$this->aScope = ScopeQuery::create()->findPk($this->scope_id, $con);
+		if ($this->aBoard === null && ($this->board_id !== null)) {
+			$this->aBoard = BoardQuery::create()->findPk($this->board_id, $con);
 			/* The following can be used additionally to
 				guarantee the related object contains a reference
 				to this object.  This level of coupling may, however, be
 				undesirable since it could result in an only partially populated collection
 				in the referenced object.
-				$this->aScope->addLinks($this);
+				$this->aBoard->addStuffs($this);
 			 */
 		}
-		return $this->aScope;
+		return $this->aBoard;
 	}
 
 	/**
@@ -1304,17 +1525,21 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	public function clear()
 	{
 		$this->id = null;
-		$this->scope_id = null;
-		$this->url = null;
+		$this->board_id = null;
+		$this->content = null;
 		$this->details = null;
 		$this->label = null;
-		$this->ip = null;
+		$this->starred = null;
+		$this->checked = null;
 		$this->order = null;
+		$this->ip = null;
 		$this->created_at = null;
 		$this->updated_at = null;
+		$this->deleted_at = null;
 		$this->alreadyInSave = false;
 		$this->alreadyInValidation = false;
 		$this->clearAllReferences();
+		$this->applyDefaultValues();
 		$this->resetModified();
 		$this->setNew(true);
 		$this->setDeleted(false);
@@ -1334,7 +1559,7 @@ abstract class BaseLink extends BaseObject  implements Persistent
 		if ($deep) {
 		} // if ($deep)
 
-		$this->aScope = null;
+		$this->aBoard = null;
 	}
 
 	/**
@@ -1344,7 +1569,7 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	 */
 	public function __toString()
 	{
-		return (string) $this->exportTo(LinkPeer::DEFAULT_STRING_FORMAT);
+		return (string) $this->exportTo(StuffPeer::DEFAULT_STRING_FORMAT);
 	}
 
 	/**
@@ -1354,7 +1579,7 @@ abstract class BaseLink extends BaseObject  implements Persistent
 	{
 		
 		// symfony_behaviors behavior
-		if ($callable = sfMixer::getCallable('BaseLink:' . $name))
+		if ($callable = sfMixer::getCallable('BaseStuff:' . $name))
 		{
 		  array_unshift($params, $this);
 		  return call_user_func_array($callable, $params);
@@ -1363,4 +1588,4 @@ abstract class BaseLink extends BaseObject  implements Persistent
 		return parent::__call($name, $params);
 	}
 
-} // BaseLink
+} // BaseStuff

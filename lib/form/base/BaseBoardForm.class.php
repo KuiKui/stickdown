@@ -1,15 +1,15 @@
 <?php
 
 /**
- * Scope form base class.
+ * Board form base class.
  *
- * @method Scope getObject() Returns the current form's model object
+ * @method Board getObject() Returns the current form's model object
  *
  * @package    stickdown
  * @subpackage form
  * @author     Deuteron
  */
-abstract class BaseScopeForm extends BaseFormPropel
+abstract class BaseBoardForm extends BaseFormPropel
 {
   public function setup()
   {
@@ -19,6 +19,7 @@ abstract class BaseScopeForm extends BaseFormPropel
       'ip'         => new sfWidgetFormInputText(),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
+      'deleted_at' => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
@@ -27,13 +28,14 @@ abstract class BaseScopeForm extends BaseFormPropel
       'ip'         => new sfValidatorString(array('max_length' => 16, 'required' => false)),
       'created_at' => new sfValidatorDateTime(array('required' => false)),
       'updated_at' => new sfValidatorDateTime(array('required' => false)),
+      'deleted_at' => new sfValidatorDateTime(array('required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
-      new sfValidatorPropelUnique(array('model' => 'Scope', 'column' => array('name')))
+      new sfValidatorPropelUnique(array('model' => 'Board', 'column' => array('name')))
     );
 
-    $this->widgetSchema->setNameFormat('scope[%s]');
+    $this->widgetSchema->setNameFormat('board[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -42,7 +44,7 @@ abstract class BaseScopeForm extends BaseFormPropel
 
   public function getModelName()
   {
-    return 'Scope';
+    return 'Board';
   }
 
 

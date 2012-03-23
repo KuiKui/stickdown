@@ -2,76 +2,80 @@
 
 
 /**
- * Base class that represents a query for the 'scope' table.
+ * Base class that represents a query for the 'board' table.
  *
  * 
  *
- * @method     ScopeQuery orderById($order = Criteria::ASC) Order by the id column
- * @method     ScopeQuery orderByName($order = Criteria::ASC) Order by the name column
- * @method     ScopeQuery orderByIp($order = Criteria::ASC) Order by the ip column
- * @method     ScopeQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
- * @method     ScopeQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
+ * @method     BoardQuery orderById($order = Criteria::ASC) Order by the id column
+ * @method     BoardQuery orderByName($order = Criteria::ASC) Order by the name column
+ * @method     BoardQuery orderByIp($order = Criteria::ASC) Order by the ip column
+ * @method     BoardQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
+ * @method     BoardQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
+ * @method     BoardQuery orderByDeletedAt($order = Criteria::ASC) Order by the deleted_at column
  *
- * @method     ScopeQuery groupById() Group by the id column
- * @method     ScopeQuery groupByName() Group by the name column
- * @method     ScopeQuery groupByIp() Group by the ip column
- * @method     ScopeQuery groupByCreatedAt() Group by the created_at column
- * @method     ScopeQuery groupByUpdatedAt() Group by the updated_at column
+ * @method     BoardQuery groupById() Group by the id column
+ * @method     BoardQuery groupByName() Group by the name column
+ * @method     BoardQuery groupByIp() Group by the ip column
+ * @method     BoardQuery groupByCreatedAt() Group by the created_at column
+ * @method     BoardQuery groupByUpdatedAt() Group by the updated_at column
+ * @method     BoardQuery groupByDeletedAt() Group by the deleted_at column
  *
- * @method     ScopeQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
- * @method     ScopeQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
- * @method     ScopeQuery innerJoin($relation) Adds a INNER JOIN clause to the query
+ * @method     BoardQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
+ * @method     BoardQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
+ * @method     BoardQuery innerJoin($relation) Adds a INNER JOIN clause to the query
  *
- * @method     ScopeQuery leftJoinLink($relationAlias = null) Adds a LEFT JOIN clause to the query using the Link relation
- * @method     ScopeQuery rightJoinLink($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Link relation
- * @method     ScopeQuery innerJoinLink($relationAlias = null) Adds a INNER JOIN clause to the query using the Link relation
+ * @method     BoardQuery leftJoinStuff($relationAlias = null) Adds a LEFT JOIN clause to the query using the Stuff relation
+ * @method     BoardQuery rightJoinStuff($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Stuff relation
+ * @method     BoardQuery innerJoinStuff($relationAlias = null) Adds a INNER JOIN clause to the query using the Stuff relation
  *
- * @method     Scope findOne(PropelPDO $con = null) Return the first Scope matching the query
- * @method     Scope findOneOrCreate(PropelPDO $con = null) Return the first Scope matching the query, or a new Scope object populated from the query conditions when no match is found
+ * @method     Board findOne(PropelPDO $con = null) Return the first Board matching the query
+ * @method     Board findOneOrCreate(PropelPDO $con = null) Return the first Board matching the query, or a new Board object populated from the query conditions when no match is found
  *
- * @method     Scope findOneById(int $id) Return the first Scope filtered by the id column
- * @method     Scope findOneByName(string $name) Return the first Scope filtered by the name column
- * @method     Scope findOneByIp(string $ip) Return the first Scope filtered by the ip column
- * @method     Scope findOneByCreatedAt(string $created_at) Return the first Scope filtered by the created_at column
- * @method     Scope findOneByUpdatedAt(string $updated_at) Return the first Scope filtered by the updated_at column
+ * @method     Board findOneById(int $id) Return the first Board filtered by the id column
+ * @method     Board findOneByName(string $name) Return the first Board filtered by the name column
+ * @method     Board findOneByIp(string $ip) Return the first Board filtered by the ip column
+ * @method     Board findOneByCreatedAt(string $created_at) Return the first Board filtered by the created_at column
+ * @method     Board findOneByUpdatedAt(string $updated_at) Return the first Board filtered by the updated_at column
+ * @method     Board findOneByDeletedAt(string $deleted_at) Return the first Board filtered by the deleted_at column
  *
- * @method     array findById(int $id) Return Scope objects filtered by the id column
- * @method     array findByName(string $name) Return Scope objects filtered by the name column
- * @method     array findByIp(string $ip) Return Scope objects filtered by the ip column
- * @method     array findByCreatedAt(string $created_at) Return Scope objects filtered by the created_at column
- * @method     array findByUpdatedAt(string $updated_at) Return Scope objects filtered by the updated_at column
+ * @method     array findById(int $id) Return Board objects filtered by the id column
+ * @method     array findByName(string $name) Return Board objects filtered by the name column
+ * @method     array findByIp(string $ip) Return Board objects filtered by the ip column
+ * @method     array findByCreatedAt(string $created_at) Return Board objects filtered by the created_at column
+ * @method     array findByUpdatedAt(string $updated_at) Return Board objects filtered by the updated_at column
+ * @method     array findByDeletedAt(string $deleted_at) Return Board objects filtered by the deleted_at column
  *
  * @package    propel.generator.lib.model.om
  */
-abstract class BaseScopeQuery extends ModelCriteria
+abstract class BaseBoardQuery extends ModelCriteria
 {
 	
 	/**
-	 * Initializes internal state of BaseScopeQuery object.
+	 * Initializes internal state of BaseBoardQuery object.
 	 *
 	 * @param     string $dbName The dabase name
 	 * @param     string $modelName The phpName of a model, e.g. 'Book'
 	 * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
 	 */
-	public function __construct($dbName = 'propel', $modelName = 'Scope', $modelAlias = null)
+	public function __construct($dbName = 'propel', $modelName = 'Board', $modelAlias = null)
 	{
 		parent::__construct($dbName, $modelName, $modelAlias);
 	}
 
 	/**
-	 * Returns a new ScopeQuery object.
+	 * Returns a new BoardQuery object.
 	 *
 	 * @param     string $modelAlias The alias of a model in the query
 	 * @param     Criteria $criteria Optional Criteria to build the query from
 	 *
-	 * @return    ScopeQuery
+	 * @return    BoardQuery
 	 */
 	public static function create($modelAlias = null, $criteria = null)
 	{
-		if ($criteria instanceof ScopeQuery) {
+		if ($criteria instanceof BoardQuery) {
 			return $criteria;
 		}
-		$query = new ScopeQuery();
+		$query = new BoardQuery();
 		if (null !== $modelAlias) {
 			$query->setModelAlias($modelAlias);
 		}
@@ -93,19 +97,19 @@ abstract class BaseScopeQuery extends ModelCriteria
 	 * @param     mixed $key Primary key to use for the query
 	 * @param     PropelPDO $con an optional connection object
 	 *
-	 * @return    Scope|array|mixed the result, formatted by the current formatter
+	 * @return    Board|array|mixed the result, formatted by the current formatter
 	 */
 	public function findPk($key, $con = null)
 	{
 		if ($key === null) {
 			return null;
 		}
-		if ((null !== ($obj = ScopePeer::getInstanceFromPool((string) $key))) && !$this->formatter) {
+		if ((null !== ($obj = BoardPeer::getInstanceFromPool((string) $key))) && !$this->formatter) {
 			// the object is alredy in the instance pool
 			return $obj;
 		}
 		if ($con === null) {
-			$con = Propel::getConnection(ScopePeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(BoardPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 		$this->basePreSelect($con);
 		if ($this->formatter || $this->modelAlias || $this->with || $this->select
@@ -124,11 +128,11 @@ abstract class BaseScopeQuery extends ModelCriteria
 	 * @param     mixed $key Primary key to use for the query
 	 * @param     PropelPDO $con A connection object
 	 *
-	 * @return    Scope A model object, or null if the key is not found
+	 * @return    Board A model object, or null if the key is not found
 	 */
 	protected function findPkSimple($key, $con)
 	{
-		$sql = 'SELECT `ID`, `NAME`, `IP`, `CREATED_AT`, `UPDATED_AT` FROM `scope` WHERE `ID` = :p0';
+		$sql = 'SELECT `ID`, `NAME`, `IP`, `CREATED_AT`, `UPDATED_AT`, `DELETED_AT` FROM `board` WHERE `ID` = :p0';
 		try {
 			$stmt = $con->prepare($sql);
 			$stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -139,9 +143,9 @@ abstract class BaseScopeQuery extends ModelCriteria
 		}
 		$obj = null;
 		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$obj = new Scope();
+			$obj = new Board();
 			$obj->hydrate($row);
-			ScopePeer::addInstanceToPool($obj, (string) $row[0]);
+			BoardPeer::addInstanceToPool($obj, (string) $row[0]);
 		}
 		$stmt->closeCursor();
 
@@ -154,7 +158,7 @@ abstract class BaseScopeQuery extends ModelCriteria
 	 * @param     mixed $key Primary key to use for the query
 	 * @param     PropelPDO $con A connection object
 	 *
-	 * @return    Scope|array|mixed the result, formatted by the current formatter
+	 * @return    Board|array|mixed the result, formatted by the current formatter
 	 */
 	protected function findPkComplex($key, $con)
 	{
@@ -194,11 +198,11 @@ abstract class BaseScopeQuery extends ModelCriteria
 	 *
 	 * @param     mixed $key Primary key to use for the query
 	 *
-	 * @return    ScopeQuery The current query, for fluid interface
+	 * @return    BoardQuery The current query, for fluid interface
 	 */
 	public function filterByPrimaryKey($key)
 	{
-		return $this->addUsingAlias(ScopePeer::ID, $key, Criteria::EQUAL);
+		return $this->addUsingAlias(BoardPeer::ID, $key, Criteria::EQUAL);
 	}
 
 	/**
@@ -206,11 +210,11 @@ abstract class BaseScopeQuery extends ModelCriteria
 	 *
 	 * @param     array $keys The list of primary key to use for the query
 	 *
-	 * @return    ScopeQuery The current query, for fluid interface
+	 * @return    BoardQuery The current query, for fluid interface
 	 */
 	public function filterByPrimaryKeys($keys)
 	{
-		return $this->addUsingAlias(ScopePeer::ID, $keys, Criteria::IN);
+		return $this->addUsingAlias(BoardPeer::ID, $keys, Criteria::IN);
 	}
 
 	/**
@@ -229,14 +233,14 @@ abstract class BaseScopeQuery extends ModelCriteria
 	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
 	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
 	 *
-	 * @return    ScopeQuery The current query, for fluid interface
+	 * @return    BoardQuery The current query, for fluid interface
 	 */
 	public function filterById($id = null, $comparison = null)
 	{
 		if (is_array($id) && null === $comparison) {
 			$comparison = Criteria::IN;
 		}
-		return $this->addUsingAlias(ScopePeer::ID, $id, $comparison);
+		return $this->addUsingAlias(BoardPeer::ID, $id, $comparison);
 	}
 
 	/**
@@ -252,7 +256,7 @@ abstract class BaseScopeQuery extends ModelCriteria
 	 *              Accepts wildcards (* and % trigger a LIKE)
 	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
 	 *
-	 * @return    ScopeQuery The current query, for fluid interface
+	 * @return    BoardQuery The current query, for fluid interface
 	 */
 	public function filterByName($name = null, $comparison = null)
 	{
@@ -264,7 +268,7 @@ abstract class BaseScopeQuery extends ModelCriteria
 				$comparison = Criteria::LIKE;
 			}
 		}
-		return $this->addUsingAlias(ScopePeer::NAME, $name, $comparison);
+		return $this->addUsingAlias(BoardPeer::NAME, $name, $comparison);
 	}
 
 	/**
@@ -280,7 +284,7 @@ abstract class BaseScopeQuery extends ModelCriteria
 	 *              Accepts wildcards (* and % trigger a LIKE)
 	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
 	 *
-	 * @return    ScopeQuery The current query, for fluid interface
+	 * @return    BoardQuery The current query, for fluid interface
 	 */
 	public function filterByIp($ip = null, $comparison = null)
 	{
@@ -292,7 +296,7 @@ abstract class BaseScopeQuery extends ModelCriteria
 				$comparison = Criteria::LIKE;
 			}
 		}
-		return $this->addUsingAlias(ScopePeer::IP, $ip, $comparison);
+		return $this->addUsingAlias(BoardPeer::IP, $ip, $comparison);
 	}
 
 	/**
@@ -313,18 +317,18 @@ abstract class BaseScopeQuery extends ModelCriteria
 	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
 	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
 	 *
-	 * @return    ScopeQuery The current query, for fluid interface
+	 * @return    BoardQuery The current query, for fluid interface
 	 */
 	public function filterByCreatedAt($createdAt = null, $comparison = null)
 	{
 		if (is_array($createdAt)) {
 			$useMinMax = false;
 			if (isset($createdAt['min'])) {
-				$this->addUsingAlias(ScopePeer::CREATED_AT, $createdAt['min'], Criteria::GREATER_EQUAL);
+				$this->addUsingAlias(BoardPeer::CREATED_AT, $createdAt['min'], Criteria::GREATER_EQUAL);
 				$useMinMax = true;
 			}
 			if (isset($createdAt['max'])) {
-				$this->addUsingAlias(ScopePeer::CREATED_AT, $createdAt['max'], Criteria::LESS_EQUAL);
+				$this->addUsingAlias(BoardPeer::CREATED_AT, $createdAt['max'], Criteria::LESS_EQUAL);
 				$useMinMax = true;
 			}
 			if ($useMinMax) {
@@ -334,7 +338,7 @@ abstract class BaseScopeQuery extends ModelCriteria
 				$comparison = Criteria::IN;
 			}
 		}
-		return $this->addUsingAlias(ScopePeer::CREATED_AT, $createdAt, $comparison);
+		return $this->addUsingAlias(BoardPeer::CREATED_AT, $createdAt, $comparison);
 	}
 
 	/**
@@ -355,18 +359,18 @@ abstract class BaseScopeQuery extends ModelCriteria
 	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
 	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
 	 *
-	 * @return    ScopeQuery The current query, for fluid interface
+	 * @return    BoardQuery The current query, for fluid interface
 	 */
 	public function filterByUpdatedAt($updatedAt = null, $comparison = null)
 	{
 		if (is_array($updatedAt)) {
 			$useMinMax = false;
 			if (isset($updatedAt['min'])) {
-				$this->addUsingAlias(ScopePeer::UPDATED_AT, $updatedAt['min'], Criteria::GREATER_EQUAL);
+				$this->addUsingAlias(BoardPeer::UPDATED_AT, $updatedAt['min'], Criteria::GREATER_EQUAL);
 				$useMinMax = true;
 			}
 			if (isset($updatedAt['max'])) {
-				$this->addUsingAlias(ScopePeer::UPDATED_AT, $updatedAt['max'], Criteria::LESS_EQUAL);
+				$this->addUsingAlias(BoardPeer::UPDATED_AT, $updatedAt['max'], Criteria::LESS_EQUAL);
 				$useMinMax = true;
 			}
 			if ($useMinMax) {
@@ -376,44 +380,86 @@ abstract class BaseScopeQuery extends ModelCriteria
 				$comparison = Criteria::IN;
 			}
 		}
-		return $this->addUsingAlias(ScopePeer::UPDATED_AT, $updatedAt, $comparison);
+		return $this->addUsingAlias(BoardPeer::UPDATED_AT, $updatedAt, $comparison);
 	}
 
 	/**
-	 * Filter the query by a related Link object
+	 * Filter the query on the deleted_at column
 	 *
-	 * @param     Link $link  the related object to use as filter
+	 * Example usage:
+	 * <code>
+	 * $query->filterByDeletedAt('2011-03-14'); // WHERE deleted_at = '2011-03-14'
+	 * $query->filterByDeletedAt('now'); // WHERE deleted_at = '2011-03-14'
+	 * $query->filterByDeletedAt(array('max' => 'yesterday')); // WHERE deleted_at > '2011-03-13'
+	 * </code>
+	 *
+	 * @param     mixed $deletedAt The value to use as filter.
+	 *              Values can be integers (unix timestamps), DateTime objects, or strings.
+	 *              Empty strings are treated as NULL.
+	 *              Use scalar values for equality.
+	 *              Use array values for in_array() equivalent.
+	 *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
 	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
 	 *
-	 * @return    ScopeQuery The current query, for fluid interface
+	 * @return    BoardQuery The current query, for fluid interface
 	 */
-	public function filterByLink($link, $comparison = null)
+	public function filterByDeletedAt($deletedAt = null, $comparison = null)
 	{
-		if ($link instanceof Link) {
+		if (is_array($deletedAt)) {
+			$useMinMax = false;
+			if (isset($deletedAt['min'])) {
+				$this->addUsingAlias(BoardPeer::DELETED_AT, $deletedAt['min'], Criteria::GREATER_EQUAL);
+				$useMinMax = true;
+			}
+			if (isset($deletedAt['max'])) {
+				$this->addUsingAlias(BoardPeer::DELETED_AT, $deletedAt['max'], Criteria::LESS_EQUAL);
+				$useMinMax = true;
+			}
+			if ($useMinMax) {
+				return $this;
+			}
+			if (null === $comparison) {
+				$comparison = Criteria::IN;
+			}
+		}
+		return $this->addUsingAlias(BoardPeer::DELETED_AT, $deletedAt, $comparison);
+	}
+
+	/**
+	 * Filter the query by a related Stuff object
+	 *
+	 * @param     Stuff $stuff  the related object to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    BoardQuery The current query, for fluid interface
+	 */
+	public function filterByStuff($stuff, $comparison = null)
+	{
+		if ($stuff instanceof Stuff) {
 			return $this
-				->addUsingAlias(ScopePeer::ID, $link->getScopeId(), $comparison);
-		} elseif ($link instanceof PropelCollection) {
+				->addUsingAlias(BoardPeer::ID, $stuff->getBoardId(), $comparison);
+		} elseif ($stuff instanceof PropelCollection) {
 			return $this
-				->useLinkQuery()
-				->filterByPrimaryKeys($link->getPrimaryKeys())
+				->useStuffQuery()
+				->filterByPrimaryKeys($stuff->getPrimaryKeys())
 				->endUse();
 		} else {
-			throw new PropelException('filterByLink() only accepts arguments of type Link or PropelCollection');
+			throw new PropelException('filterByStuff() only accepts arguments of type Stuff or PropelCollection');
 		}
 	}
 
 	/**
-	 * Adds a JOIN clause to the query using the Link relation
+	 * Adds a JOIN clause to the query using the Stuff relation
 	 *
 	 * @param     string $relationAlias optional alias for the relation
 	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
 	 *
-	 * @return    ScopeQuery The current query, for fluid interface
+	 * @return    BoardQuery The current query, for fluid interface
 	 */
-	public function joinLink($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	public function joinStuff($relationAlias = null, $joinType = Criteria::INNER_JOIN)
 	{
 		$tableMap = $this->getTableMap();
-		$relationMap = $tableMap->getRelation('Link');
+		$relationMap = $tableMap->getRelation('Stuff');
 
 		// create a ModelJoin object for this join
 		$join = new ModelJoin();
@@ -428,14 +474,14 @@ abstract class BaseScopeQuery extends ModelCriteria
 			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
 			$this->addJoinObject($join, $relationAlias);
 		} else {
-			$this->addJoinObject($join, 'Link');
+			$this->addJoinObject($join, 'Stuff');
 		}
 
 		return $this;
 	}
 
 	/**
-	 * Use the Link relation Link object
+	 * Use the Stuff relation Stuff object
 	 *
 	 * @see       useQuery()
 	 *
@@ -443,29 +489,29 @@ abstract class BaseScopeQuery extends ModelCriteria
 	 *                                   to be used as main alias in the secondary query
 	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
 	 *
-	 * @return    LinkQuery A secondary query class using the current class as primary query
+	 * @return    StuffQuery A secondary query class using the current class as primary query
 	 */
-	public function useLinkQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	public function useStuffQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
 	{
 		return $this
-			->joinLink($relationAlias, $joinType)
-			->useQuery($relationAlias ? $relationAlias : 'Link', 'LinkQuery');
+			->joinStuff($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'Stuff', 'StuffQuery');
 	}
 
 	/**
 	 * Exclude object from result
 	 *
-	 * @param     Scope $scope Object to remove from the list of results
+	 * @param     Board $board Object to remove from the list of results
 	 *
-	 * @return    ScopeQuery The current query, for fluid interface
+	 * @return    BoardQuery The current query, for fluid interface
 	 */
-	public function prune($scope = null)
+	public function prune($board = null)
 	{
-		if ($scope) {
-			$this->addUsingAlias(ScopePeer::ID, $scope->getId(), Criteria::NOT_EQUAL);
+		if ($board) {
+			$this->addUsingAlias(BoardPeer::ID, $board->getId(), Criteria::NOT_EQUAL);
 		}
 
 		return $this;
 	}
 
-} // BaseScopeQuery
+} // BaseBoardQuery

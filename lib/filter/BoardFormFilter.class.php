@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Link filter form.
+ * Board filter form.
  *
  * @package    stickdown
  * @subpackage filter
  * @author     Deuteron
  */
-class LinkFormFilter extends BaseLinkFormFilter
+class BoardFormFilter extends BaseBoardFormFilter
 {
   public function configure()
   {

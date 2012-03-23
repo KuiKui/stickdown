@@ -3,7 +3,7 @@
 
 
 /**
- * Skeleton subclass for representing a row from the 'scope' table.
+ * Skeleton subclass for performing query and update operations on the 'board' table.
  *
  * 
  *
@@ -13,6 +13,6 @@
  *
  * @package    propel.generator.lib.model
  */
-class Scope extends BaseScope {
+class BoardPeer extends BaseBoardPeer {
 
-} // Scope
+} // BoardPeer

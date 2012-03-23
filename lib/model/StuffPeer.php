@@ -3,7 +3,7 @@
 
 
 /**
- * Skeleton subclass for performing query and update operations on the 'link' table.
+ * Skeleton subclass for performing query and update operations on the 'stuff' table.
  *
  * 
  *
@@ -13,12 +13,12 @@
  *
  * @package    propel.generator.lib.model
  */
-class LinkPeer extends BaseLinkPeer {
-  static public function getLinksByScope($scopeId)
+class StuffPeer extends BaseStuffPeer {
+  static public function getStuffByBoard($boardId)
   {
-    return LinkQuery::create()
-      ->filterByScopeId($scopeId)
+    return StuffQuery::create()
+      ->filterByBoardId($boardId)
       ->orderByCreatedAt(Criteria::DESC)
       ->find();
   }
-} // LinkPeer
+} // StuffPeer

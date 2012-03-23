@@ -5,9 +5,9 @@ homepage:
   url:   /
   param: { module: home, action: index }
 
-scope:
-  url:   /:scope
-  param: { module: scope, action: index }
+board:
+  url:   /:board
+  param: { module: board, action: index }
 
 default_index:
   url:   /:module

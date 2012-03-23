@@ -3,7 +3,7 @@
 
 
 /**
- * Skeleton subclass for performing query and update operations on the 'link' table.
+ * Skeleton subclass for performing query and update operations on the 'stuff' table.
  *
  * 
  *
@@ -13,6 +13,6 @@
  *
  * @package    propel.generator.lib.model
  */
-class LinkQuery extends BaseLinkQuery {
+class StuffQuery extends BaseStuffQuery {
 
-} // LinkQuery
+} // StuffQuery

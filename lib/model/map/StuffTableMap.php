@@ -3,7 +3,7 @@
 
 
 /**
- * This class defines the structure of the 'scope' table.
+ * This class defines the structure of the 'stuff' table.
  *
  *
  *
@@ -14,13 +14,13 @@
  *
  * @package    propel.generator.lib.model.map
  */
-class ScopeTableMap extends TableMap
+class StuffTableMap extends TableMap
 {
 
 	/**
 	 * The (dot-path) name of this class
 	 */
-	const CLASS_NAME = 'lib.model.map.ScopeTableMap';
+	const CLASS_NAME = 'lib.model.map.StuffTableMap';
 
 	/**
 	 * Initialize the table attributes, columns and validators
@@ -32,17 +32,24 @@ class ScopeTableMap extends TableMap
 	public function initialize()
 	{
 		// attributes
-		$this->setName('scope');
-		$this->setPhpName('Scope');
-		$this->setClassname('Scope');
+		$this->setName('stuff');
+		$this->setPhpName('Stuff');
+		$this->setClassname('Stuff');
 		$this->setPackage('lib.model');
 		$this->setUseIdGenerator(true);
 		// columns
 		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
-		$this->addColumn('NAME', 'Name', 'VARCHAR', true, 128, null);
+		$this->addForeignKey('BOARD_ID', 'BoardId', 'INTEGER', 'board', 'ID', true, 11, null);
+		$this->addColumn('CONTENT', 'Content', 'VARCHAR', true, 255, null);
+		$this->addColumn('DETAILS', 'Details', 'VARCHAR', false, 64, null);
+		$this->addColumn('LABEL', 'Label', 'VARCHAR', false, 32, null);
+		$this->addColumn('STARRED', 'Starred', 'TINYINT', true, 1, 0);
+		$this->addColumn('CHECKED', 'Checked', 'TINYINT', true, 1, 0);
+		$this->addColumn('ORDER', 'Order', 'INTEGER', false, 11, null);
 		$this->addColumn('IP', 'Ip', 'VARCHAR', false, 16, null);
 		$this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
 		$this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
+		$this->addColumn('DELETED_AT', 'DeletedAt', 'TIMESTAMP', false, null, null);
 		// validators
 	} // initialize()
 
@@ -51,7 +58,7 @@ class ScopeTableMap extends TableMap
 	 */
 	public function buildRelations()
 	{
-		$this->addRelation('Link', 'Link', RelationMap::ONE_TO_MANY, array('id' => 'scope_id', ), 'CASCADE', 'RESTRICT', 'Links');
+		$this->addRelation('Board', 'Board', RelationMap::MANY_TO_ONE, array('board_id' => 'id', ), 'CASCADE', 'RESTRICT');
 	} // buildRelations()
 
 	/**
@@ -69,4 +76,4 @@ class ScopeTableMap extends TableMap
 		);
 	} // getBehaviors()
 
-} // ScopeTableMap
+} // StuffTableMap
