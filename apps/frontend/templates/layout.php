@@ -1,3 +1,4 @@
+<?php use_helper('Network') ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
@@ -8,17 +9,9 @@
     <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Ubuntu:400,700' />
     <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Armata' />
     <?php include_stylesheets() ?>
-    <?php include_javascripts() ?>
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-30234218-1']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
+    <?php if(!is_local($_SERVER['REMOTE_ADDR'])): ?>
+    <?php echo javascript_include_tag('analytics.js'); ?>
+    <?php endif; ?>
   </head>
   <body>
   <div class="navbar">
@@ -40,5 +33,6 @@
         </div>
       </div>
     </div>
+  <?php include_javascripts() ?>
   </body>
 </html>
