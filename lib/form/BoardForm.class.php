@@ -22,8 +22,8 @@ class BoardForm extends BaseBoardForm
       'name' => new sfValidatorString(
         array('required' => true, 'max_length' => 128),
         array(
-          'required' => "really want to go to that board ?",
-          'max_length' => "is too long"
+          'required' => "please enter a board name",
+          'max_length' => "this board name is too long"
         )
       )
     ));

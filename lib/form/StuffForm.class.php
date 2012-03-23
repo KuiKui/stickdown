@@ -26,13 +26,13 @@ class StuffForm extends BaseStuffForm
         array('required' => true, 'max_length' => 255),
         array(
           'required' => "really want to stick that ?",
-          'max_length' => "is too long"
+          'max_length' => "this stuff is too long..."
         )
       ),
       'details' => new sfValidatorString(
         array('required' => false, 'max_length' => 64),
         array(
-           'max_length' => "is too long"
+          'max_length' => "is too long"
         )
       )
     ));
