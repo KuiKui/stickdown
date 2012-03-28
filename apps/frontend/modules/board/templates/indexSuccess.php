@@ -3,7 +3,7 @@
 <div id="board" class="container">
   <div class="row">
     <div class="span12">
-      <h2>Hi <a href="/<?php echo $boardName; ?>"><?php echo $boardName; ?></a>, quickly stick your stuff.</h2>
+      <h2><a href="/<?php echo $boardName; ?>"><?php echo $boardName; ?></a>, quickly stick your stuff.</h2>
       <form method="post" class="form-inline">
         <?php echo $form ?>
         <input id="send" type="submit" value="Stick" class="btn-info" title="Stick my stuff" />
