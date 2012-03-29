@@ -85,4 +85,27 @@ class boardActions extends sfActions
 
     $this->redirect($url);
   }
+
+  public function executeSetStarred(sfWebRequest $request)
+  {
+    $returnCode = 1;
+    $newStarred = -1;
+    $stuff = StuffPeer::retrieveByPK($request->getParameter('stuff_id'));
+    $starred = ($request->getParameter('starred')) ? 1 : 0;
+
+    if($stuff)
+    {
+      $stuff
+        ->setStarred($starred)
+        ->save();
+      $returnCode = 0;
+      $newStarred = $stuff->getStarred();
+    }
+
+    return $this->renderText(json_encode(array(
+      'returnCode' => $returnCode,
+      'starred' => $newStarred,
+      'stuffId' => $request->getParameter('stuff_id')
+    )));
+  }
 }
