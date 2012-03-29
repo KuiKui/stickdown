@@ -4,6 +4,10 @@ $(document).ready(function() {
     var line = $(this).parent('tr').get(0);
     manageStar(line);
   });
+  $('.check').click(function(event) {
+    var line = $(this).parent('tr').get(0);
+    manageCheck(line);
+  });
 });
 
 function manageStar(line) {
@@ -26,6 +30,32 @@ function updateStar(stuffId, starred) {
           $('#stuff-' + info.stuffId).addClass('starred');
         } else {
           $('#stuff-' + info.stuffId).removeClass('starred');
+        }
+      }
+    }
+  });
+}
+
+function manageCheck(line) {
+  var stuffId = getIdFromHTMLId(line.id);
+  var checked = ($(line).hasClass('checked')) ? 0 : 1;
+  updateCheck(stuffId, checked);
+}
+
+function updateCheck(stuffId, checked) {
+  $.ajax({
+    type: "POST",
+    url: '/frontend_dev.php/board/setChecked',
+    data: ({stuff_id: stuffId, checked: checked}),
+    dataType: "json",
+    cache: false,
+    success: function(json) {
+      var info = "";
+      if(json != undefined && (info = eval(json)) != undefined && info.returnCode == 0) {
+        if(json.checked) {
+          $('#stuff-' + info.stuffId).addClass('checked');
+        } else {
+          $('#stuff-' + info.stuffId).removeClass('checked');
         }
       }
     }

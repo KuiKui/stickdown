@@ -99,9 +99,18 @@ body #board #list tr td.star {
   background:transparent url(../images/star/star.png) no-repeat center center;
   width:18px;
 }
+body #board #list tr td.check {
+  background:transparent url(../images/check/unchecked.png) no-repeat center center;
+  width:18px;
+}
 body #board #list tr:hover td.star { background:#f5f5f5 url(../images/star/star-hover.png) no-repeat center center; }
+body #board #list tr:hover td.check { background-color:#f5f5f5; }
 body #board #list tr.starred td.star { background:transparent url(../images/star/star-highlighted.png) no-repeat center center; }
 body #board #list tr.starred:hover td.star { background:#f5f5f5 url(../images/star/star-highlighted-hover.png) no-repeat center center; }
+body #board #list tr.checked td { opacity:0.3; }
+body #board #list tr.checked td.check { background:transparent url(../images/check/checked.png) no-repeat center center; }
+body #board #list tr.checked:hover td { opacity:0.6; }
+body #board #list tr.checked:hover td.check { background-color:#f5f5f5; }
 body #footer {
   text-align:center;
   margin-top:25px;

@@ -108,4 +108,27 @@ class boardActions extends sfActions
       'stuffId' => $request->getParameter('stuff_id')
     )));
   }
+
+  public function executeSetChecked(sfWebRequest $request)
+  {
+    $returnCode = 1;
+    $newChecked = -1;
+    $stuff = StuffPeer::retrieveByPK($request->getParameter('stuff_id'));
+    $checked = ($request->getParameter('checked')) ? 1 : 0;
+
+    if($stuff)
+    {
+      $stuff
+        ->setChecked($checked)
+        ->save();
+      $returnCode = 0;
+      $newChecked = $stuff->getChecked();
+    }
+
+    return $this->renderText(json_encode(array(
+      'returnCode' => $returnCode,
+      'checked' => $newChecked,
+      'stuffId' => $request->getParameter('stuff_id')
+    )));
+  }
 }
