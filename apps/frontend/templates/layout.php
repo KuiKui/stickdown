@@ -14,14 +14,13 @@
     <?php endif; ?>
   </head>
   <body>
-  <div class="navbar">
-    <div class="navbar-inner">
-      <div class="container">
-        <a id="brand" title="Stickdown.me, quickly stick your stuff." class="brand" href="/"><strong>Stick</strong>down.me</a>
-        <ul class="nav pull-right">
-          <li><a title="Twitter" href="http://twitter.com/deuteronsoft">Twitter</a></li>
-          <li><a title="Blog" href="http://deuteron.fr/blog">Blog</a></li>
-        </ul>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a id="brand" title="Stickdown.me, quickly stick your stuff." class="brand" href="/"><strong>Stick</strong>down.me</a>
+          <ul class="nav pull-right">
+            <li><a title="Follow us on Twitter" href="http://twitter.com/deuteronsoft">Follow us on Twitter</a></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -33,6 +32,6 @@
         </div>
       </div>
     </div>
-  <?php include_javascripts() ?>
+    <?php include_javascripts() ?>
   </body>
 </html>
