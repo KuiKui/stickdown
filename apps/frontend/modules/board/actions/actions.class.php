@@ -131,4 +131,23 @@ class boardActions extends sfActions
       'stuffId' => $request->getParameter('stuff_id')
     )));
   }
+
+  public function executeDeleteStuff(sfWebRequest $request)
+  {
+    $returnCode = 1;
+    $stuff = StuffPeer::retrieveByPK($request->getParameter('stuff_id'));
+
+    if($stuff)
+    {
+      $stuff
+        ->setDeletedAt('now')
+        ->save();
+      $returnCode = 0;
+    }
+
+    return $this->renderText(json_encode(array(
+      'returnCode' => $returnCode,
+      'stuffId' => $request->getParameter('stuff_id')
+    )));
+  }
 }

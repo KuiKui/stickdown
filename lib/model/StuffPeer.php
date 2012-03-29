@@ -18,6 +18,7 @@ class StuffPeer extends BaseStuffPeer {
   {
     return StuffQuery::create()
       ->filterByBoardId($boardId)
+      ->filterByDeletedAt(null, Criteria::ISNULL)
       ->orderByCreatedAt(Criteria::DESC)
       ->find();
   }

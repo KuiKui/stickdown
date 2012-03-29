@@ -8,6 +8,10 @@ $(document).ready(function() {
     var line = $(this).parent('tr').get(0);
     manageCheck(line);
   });
+  $('.delete').click(function(event) {
+    var line = $(this).parent('tr').get(0);
+    manageDelete(line);
+  });
 });
 
 function manageStar(line) {
@@ -60,6 +64,25 @@ function updateCheck(stuffId, checked) {
       }
     }
   });
+}
+
+function manageDelete(line) {
+  var stuffId = getIdFromHTMLId(line.id);
+  if(confirm('Do you really want to delete this stuff ?')) {
+    $.ajax({
+      type: "POST",
+      url: '/frontend_dev.php/board/deleteStuff',
+      data: ({stuff_id: stuffId}),
+      dataType: "json",
+      cache: false,
+      success: function(json) {
+        var info = "";
+        if(json != undefined && (info = eval(json)) != undefined && info.returnCode == 0) {
+          $('#stuff-' + info.stuffId).hide();
+        }
+      }
+    });
+  }
 }
 
 function getIdFromHTMLId(HTMLId) {

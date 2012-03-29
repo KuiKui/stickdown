@@ -10,7 +10,7 @@
       </form>
       <?php if(count($stuffs) > 0): ?>
         <table id="list" class="table">
-          <thead><tr><th></th><th></th><th id="stuff">Stuff</th><th id="details">Details</th><th id="date">Date</th></tr></thead>
+          <thead><tr><th></th><th></th><th id="stuff">Stuff</th><th id="details">Details</th><th id="date">Date</th><th></th></tr></thead>
           <tbody>
             <?php foreach($stuffs as $stuff): ?>
             <tr id="stuff-<?php echo $stuff->getId()?>" class="<?php if($stuff->getStarred()) echo "starred"?> <?php if($stuff->getChecked()) echo "checked"?>">
@@ -19,6 +19,7 @@
               <td><?php echo link_to_if(preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $stuff->getContent()), $stuff->getContent(), $stuff->getContent());?></td>
               <td><?php echo $stuff->getDetails() ?></td>
               <td><?php echo $stuff->getCreatedAt('d/m/Y H:i') ?></td>
+              <td class="delete"></td>
             </tr>
             <?php endforeach; ?>
           </tbody>

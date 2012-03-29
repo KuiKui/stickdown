@@ -158,6 +158,10 @@ body {
             background: transparent url(../images/check/unchecked.png) no-repeat center center;
             width: 18px;
           }
+          &.delete {
+            background: transparent url(../images/trash.png) no-repeat center center;
+            width: 18px;
+          }
         }
         &:hover {
           td {
@@ -165,6 +169,9 @@ body {
               background: @listHoverColor url(../images/star/star-hover.png) no-repeat center center;
             }
             &.check {
+              background-color: @listHoverColor;
+            }
+            &.delete {
               background-color: @listHoverColor;
             }
           }
