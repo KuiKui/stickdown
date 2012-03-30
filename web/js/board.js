@@ -23,7 +23,7 @@ function manageStar(line) {
 function updateStar(stuffId, starred) {
   $.ajax({
     type: "POST",
-    url: '/frontend_dev.php/board/setStarred',
+    url: '/board/setStarred',
     data: ({stuff_id: stuffId, starred: starred}),
     dataType: "json",
     cache: false,
@@ -49,7 +49,7 @@ function manageCheck(line) {
 function updateCheck(stuffId, checked) {
   $.ajax({
     type: "POST",
-    url: '/frontend_dev.php/board/setChecked',
+    url: '/board/setChecked',
     data: ({stuff_id: stuffId, checked: checked}),
     dataType: "json",
     cache: false,
@@ -71,7 +71,7 @@ function manageDelete(line) {
   if(confirm('Do you really want to delete this stuff ?')) {
     $.ajax({
       type: "POST",
-      url: '/frontend_dev.php/board/deleteStuff',
+      url: '/board/deleteStuff',
       data: ({stuff_id: stuffId}),
       dataType: "json",
       cache: false,
