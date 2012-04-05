@@ -14,6 +14,7 @@ class boardActions extends sfActions
   {
     // Récupération du board
     $this->boardName = $request->getParameter('board');
+    $this->forward404Unless(preg_match('/^([a-zA-Z0-9-_\.])*$/', $this->boardName));
     $this->currentBoard = BoardQuery::create()
       ->filterByName($this->boardName)
       ->findOne()
