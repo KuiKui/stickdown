@@ -11,6 +11,7 @@ body {
   min-height:100%;
   position:relative;
 }
+body input, body textarea, body select, body .uneditable-input { font-size:14px; }
 body a { color:#0088cc; }
 body a:hover { color:#0088cc; }
 body .navbar .navbar-inner {
@@ -46,7 +47,10 @@ body .navbar .navbar-inner .container ul.nav li a:hover {
   -webkit-text-shadow:1px 1px 7px rgba(255,255,255,0.5);
   -moz-text-shadow:1px 1px 7px rgba(255,255,255,0.5);
 }
-body form { margin:0; }
+body form {
+  margin:0;
+  font-size:14px;
+}
 body form div.control-group {
   float:left;
   padding-right:15px;
@@ -59,9 +63,11 @@ body form div.control-group .help-inline {
   display:block;
   padding-left:22px;
   position:absolute;
-  top:31px;
+  top:33px;
+  font-size:13px;
 }
 body form div.control-group label.control-label { display:none; }
+body form input#send[disabled] { opacity:0.3; }
 body #home {
   text-shadow:1px 1px 1px rgba(255,255,255,0.4);
   -webkit-text-shadow:1px 1px 1px rgba(255,255,255,0.4);
@@ -69,7 +75,10 @@ body #home {
 }
 body #home h2 { margin:0 0 40px 0; }
 body #home form .controls { display:inline-block; }
-body #home form .help-inline { left:124px; }
+body #home form .help-inline {
+  left:132px;
+  width:300px;
+}
 body #home .features { margin-top:50px; }
 body #home .features .feature h3 { margin-bottom:10px; }
 body #home .features .feature p {
