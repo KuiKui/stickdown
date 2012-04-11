@@ -11,7 +11,7 @@
       <?php if(count($stuffs) > 0): ?>
         <table id="list" class="table">
           <thead><tr><th></th><th></th><th id="stuff">Stuff</th><?php if($hasDetails): ?><th id="details">Details</th><?php endif; ?><th id="date">Date</th><th></th></tr></thead>
-          <tbody>
+          <tbody id="stuffs">
             <?php foreach($stuffs as $stuff): ?>
             <tr id="stuff-<?php echo $stuff->getId()?>" class="<?php if($stuff->getStarred()) echo "starred"?> <?php if($stuff->getChecked()) echo "checked"?>">
               <td class="check"></td>

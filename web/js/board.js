@@ -12,6 +12,13 @@ $(document).ready(function() {
     var line = $(this).parent('tr').get(0);
     manageDelete(line);
   });
+  
+  $('#list tbody#stuffs').sortable({
+    update: function(event, ui) {
+      $.post('/board/orderStuff', { stuffs: $('#list tbody#stuffs').sortable('serialize') } );
+    }
+  });
+  $("#list tbody#stuffs").disableSelection();
 });
 
 function manageStar(line) {

@@ -30,7 +30,7 @@ class boardActions extends sfActions
     {
       if($this->currentBoard)
       {
-        $this->stuffs = StuffPeer::getStuffByBoard($this->currentBoard->getId());
+        $this->stuffs = StuffPeer::getStuffsByBoard($this->currentBoard->getId());
         $this->hasDetails = $this->hasDetails($this->stuffs);
       }
     }
@@ -45,7 +45,7 @@ class boardActions extends sfActions
       {
         if($this->currentBoard)
         {
-          $this->stuffs = StuffPeer::getStuffByBoard($this->currentBoard->getId());
+          $this->stuffs = StuffPeer::getStuffsByBoard($this->currentBoard->getId());
           $this->hasDetails = $this->hasDetails($this->stuffs);
         }
       }
@@ -165,5 +165,12 @@ class boardActions extends sfActions
       'returnCode' => $returnCode,
       'stuffId' => $request->getParameter('stuff_id')
     )));
+  }
+
+  public function executeOrderStuff(sfWebRequest $request)
+  {
+    parse_str($_POST['stuffs'], $stuffOrder);
+    StuffPeer::updateStuffOrder($stuffOrder['stuff']);
+    return sfView::NONE;
   }
 }
