@@ -24,12 +24,14 @@ class boardActions extends sfActions
     $this->form = new StuffForm();
     $this->form->setDefault('board_name', $this->boardName);
     $this->stuffs = array();
+    $this->hasDetails = false;
 
     if($request->isMethod('get'))
     {
       if($this->currentBoard)
       {
         $this->stuffs = StuffPeer::getStuffByBoard($this->currentBoard->getId());
+        $this->hasDetails = $this->hasDetails($this->stuffs);
       }
     }
     else if($request->isMethod('post'))
@@ -44,9 +46,22 @@ class boardActions extends sfActions
         if($this->currentBoard)
         {
           $this->stuffs = StuffPeer::getStuffByBoard($this->currentBoard->getId());
+          $this->hasDetails = $this->hasDetails($this->stuffs);
         }
       }
     }
+  }
+
+  public function hasDetails($stuffs)
+  {
+    foreach($stuffs as $stuff)
+    {
+      if($stuff->getDetails())
+      {
+        return true;
+      }
+    }
+    return false;
   }
 
   public function saveStuff(sfWebRequest $request)
