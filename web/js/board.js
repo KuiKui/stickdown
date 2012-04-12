@@ -14,6 +14,7 @@ $(document).ready(function() {
   });
   
   $('#list tbody#stuffs').sortable({
+    handle: ".drag",
     update: function(event, ui) {
       $.post('/board/orderStuff', { stuffs: $('#list tbody#stuffs').sortable('serialize') } );
     }

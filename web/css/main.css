@@ -104,11 +104,21 @@ body #board form input#stuff_content { width:400px; }
 body #board #list { margin-top:25px; }
 body #board #list th#date { width:100px; }
 body #board #list th#starred { width:30px; }
+body #board #list tr td.drag {
+  padding-left:0;
+  padding-right:0;
+  width:6px;
+  cursor:move;
+}
 body #board #list tr td.star {
+  padding-left:2px;
+  padding-right:2px;
   background:transparent url(../images/star/star.png) no-repeat center center;
   width:18px;
 }
 body #board #list tr td.check {
+  padding-left:2px;
+  padding-right:2px;
   background:transparent url(../images/check/unchecked.png) no-repeat center center;
   width:18px;
 }
@@ -117,9 +127,8 @@ body #board #list tr td.delete {
   cursor:pointer;
   width:18px;
 }
-body #board #list tr:hover td.star { background-color:#f5f5f5; }
-body #board #list tr:hover td.check { background-color:#f5f5f5; }
-body #board #list tr:hover td.delete { background-color:#f5f5f5; }
+body #board #list tr:hover td { background-color:#f5f5f5; }
+body #board #list tr:hover td.drag { background:#f5f5f5 url(../images/drag.png) no-repeat center center; }
 body #board #list tr.starred td.star { background:transparent url(../images/star/star-highlighted.png) no-repeat center center; }
 body #board #list tr.starred:hover td.star { background-color:#f5f5f5; }
 body #board #list tr.checked td { opacity:0.3; }

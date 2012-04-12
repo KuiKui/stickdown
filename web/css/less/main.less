@@ -161,11 +161,21 @@ body {
 
       tr {
         td {
+          &.drag {
+            padding-left: 0;
+            padding-right: 0;
+            width: 6px;
+            cursor: move;
+          }
           &.star {
+            padding-left: 2px;
+            padding-right: 2px;
             background: transparent url(../images/star/star.png) no-repeat center center;
             width: 18px;
           }
           &.check {
+            padding-left: 2px;
+            padding-right: 2px;
             background: transparent url(../images/check/unchecked.png) no-repeat center center;
             width: 18px;
           }
@@ -177,14 +187,9 @@ body {
         }
         &:hover {
           td {
-            &.star {
-              background-color: @listHoverColor;
-            }
-            &.check {
-              background-color: @listHoverColor;
-            }
-            &.delete {
-              background-color: @listHoverColor;
+            background-color: @listHoverColor;
+            &.drag {
+              background: @listHoverColor url(../images/drag.png) no-repeat center center;
             }
           }
         }
