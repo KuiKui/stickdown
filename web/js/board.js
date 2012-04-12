@@ -28,6 +28,7 @@ function manageStar(line) {
 }
 
 function updateStar(stuffId, starred) {
+  setStuffState(stuffId, starred, 'starred');
   $.ajax({
     type: "POST",
     url: '/board/setStarred',
@@ -37,11 +38,7 @@ function updateStar(stuffId, starred) {
     success: function(json) {
       var info = "";
       if(json != undefined && (info = eval(json)) != undefined && info.returnCode == 0) {
-        if(json.starred) {
-          $('#stuff-' + info.stuffId).addClass('starred');
-        } else {
-          $('#stuff-' + info.stuffId).removeClass('starred');
-        }
+        setStuffState(info.stuffId, json.starred, 'starred');
       }
     }
   });
@@ -54,6 +51,7 @@ function manageCheck(line) {
 }
 
 function updateCheck(stuffId, checked) {
+  setStuffState(stuffId, checked, 'checked');
   $.ajax({
     type: "POST",
     url: '/board/setChecked',
@@ -63,11 +61,7 @@ function updateCheck(stuffId, checked) {
     success: function(json) {
       var info = "";
       if(json != undefined && (info = eval(json)) != undefined && info.returnCode == 0) {
-        if(json.checked) {
-          $('#stuff-' + info.stuffId).addClass('checked');
-        } else {
-          $('#stuff-' + info.stuffId).removeClass('checked');
-        }
+        setStuffState(info.stuffId, json.checked, 'checked');
       }
     }
   });
@@ -94,4 +88,12 @@ function manageDelete(line) {
 
 function getIdFromHTMLId(HTMLId) {
   return HTMLId.substring(HTMLId.indexOf('-', 0) + 1);
+}
+
+function setStuffState(stuffId, condition, className) {
+  if(condition) {
+    $('#stuff-' + stuffId).addClass(className);
+  } else {
+    $('#stuff-' + stuffId).removeClass(className);
+  }
 }
