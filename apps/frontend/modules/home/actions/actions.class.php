@@ -34,4 +34,12 @@ class homeActions extends sfActions
       }
     }
   }
+
+  public function executePrivacyPolicy(sfWebRequest $request)
+  {
+  }
+
+  public function executeTermsOfService(sfWebRequest $request)
+  {
+  }
 }

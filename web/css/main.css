@@ -138,4 +138,5 @@ body #board #list tr.checked:hover td.check { background-color:#f5f5f5; }
 body #footer {
   text-align:center;
   margin-top:25px;
+  opacity:0.4;
 }

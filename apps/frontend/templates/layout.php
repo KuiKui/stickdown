@@ -28,7 +28,9 @@
     <div id="footer">
       <div class="container">
         <div class="row">
-          <div class="span12">by <a href="http://deuteron.fr" title="Deuteron">Deuteron</a>, France.</div>
+          <div class="span12">
+            by <a href="http://deuteron.fr" title="Deuteron">Deuteron</a> - <a href="/pages/terms-of-service" title="Terms of service">Terms of service</a> - <a href="/pages/privacy-policy" title="Privacy policy">Privacy policy</a>
+          </div>
         </div>
       </div>
     </div>

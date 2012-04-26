@@ -5,6 +5,14 @@ homepage:
   url:   /
   param: { module: home, action: index }
 
+privacy_policy:
+  url:  /pages/privacy-policy
+  param: { module: home, action: privacyPolicy }
+
+terms_of_service:
+  url:  /pages/terms-of-service
+  param: { module: home, action: termsOfService }
+
 board:
   url:   /:board
   param: { module: board, action: index }
