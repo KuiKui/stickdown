@@ -18,9 +18,6 @@
       <div class="navbar-inner">
         <div class="container">
           <a id="brand" title="Stickdown.me, quickly stick your stuff." class="brand" href="/"><strong>Stick</strong>down.me</a>
-          <ul class="nav pull-right">
-            <li><a title="Follow us on Twitter" href="http://twitter.com/deuteronsoft">Follow us on Twitter</a></li>
-          </ul>
         </div>
       </div>
     </div>
@@ -28,9 +25,7 @@
     <div id="footer">
       <div class="container">
         <div class="row">
-          <div class="span12">
-            by <a href="http://deuteron.fr" title="Deuteron">Deuteron</a> - <a href="/pages/terms-of-service" title="Terms of service">Terms of service</a> - <a href="/pages/privacy-policy" title="Privacy policy">Privacy policy</a>
-          </div>
+          <div class="span12">by <a title="Follow us on Twitter" href="http://twitter.com/dondouny">@dondouny</a> - <a title="Follow us on Twitter" href="http://twitter.com/spocky12">@spocky12</a> &raquo; <a href="/pages/terms-of-service" title="Terms of service">Terms of service</a> - <a href="/pages/privacy-policy" title="Privacy policy">Privacy policy</a></div>
         </div>
       </div>
     </div>
