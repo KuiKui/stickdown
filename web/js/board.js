@@ -19,7 +19,6 @@ $(document).ready(function() {
       $.post('/board/orderStuff', { stuffs: $('#list tbody#stuffs').sortable('serialize') } );
     }
   });
-  $("#list tbody#stuffs").disableSelection();
 });
 
 function manageStar(line) {
