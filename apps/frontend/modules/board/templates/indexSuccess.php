@@ -17,10 +17,10 @@
               <td class="drag" title="Move stuff"></td>
               <td class="check"></td>
               <td class="star"></td>
-              <td><?php echo link_to_if(preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $stuff->getContent()), $stuff->getContent(), $stuff->getContent());?></td>
+              <td class="content" contenteditable="true"><?php echo link_to_if(preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $stuff->getContent()), $stuff->getContent(), $stuff->getContent());?></td>
               <?php if($hasDetails): ?><td><?php echo $stuff->getDetails() ?></td><?php endif; ?>
               <td><?php echo $stuff->getCreatedAt('d/m/Y H:i') ?></td>
-              <td class="delete"></td>
+              <td class="delete" title="Delete stuff"></td>
             </tr>
             <?php endforeach; ?>
           </tbody>

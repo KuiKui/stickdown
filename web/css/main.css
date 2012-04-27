@@ -67,6 +67,7 @@ body form div.control-group .help-inline {
   font-size:13px;
 }
 body form div.control-group label.control-label { display:none; }
+body form div.control-group + div.control-group { display:none; }
 body form input#send[disabled] { opacity:0.3; }
 body #home {
   text-shadow:1px 1px 1px rgba(255,255,255,0.4);

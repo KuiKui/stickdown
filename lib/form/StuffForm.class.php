@@ -22,18 +22,10 @@ class StuffForm extends BaseStuffForm
     $this->widgetSchema->setNameFormat('stuff[%s]');
 
     $this->setValidators(array(
-      'content' => new sfValidatorString(
-        array('required' => true, 'max_length' => 255),
-        array(
-          'required' => "really want to stick that ?",
-          'max_length' => "this stuff is too long..."
-        )
-      ),
+      'content' => new stuffContentValidator(),
       'details' => new sfValidatorString(
         array('required' => false, 'max_length' => 64),
-        array(
-          'max_length' => "is too long"
-        )
+        array('max_length' => "is too long")
       )
     ));
 

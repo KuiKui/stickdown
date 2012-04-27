@@ -173,4 +173,33 @@ class boardActions extends sfActions
     StuffPeer::updateStuffOrder($stuffOrder['stuff']);
     return sfView::NONE;
   }
+
+  public function executeUpdateStuff(sfWebRequest $request)
+  {
+    $returnCode = 1;
+    $stuff = StuffPeer::retrieveByPK($request->getParameter('stuff_id'));
+    $content = $request->getParameter('content');
+    $validator = new stuffContentValidator();
+
+    try
+    {
+      $validator->clean($content);
+      if($stuff && $content)
+      {
+        $stuff
+          ->setContent($content)
+          ->save();
+        $returnCode = 0;
+      }
+    }
+    catch(Exception $e)
+    {
+      throw($e);
+    }
+
+    return $this->renderText(json_encode(array(
+      'returnCode' => $returnCode,
+      'stuffId' => $request->getParameter('stuff_id')
+    )));
+  }
 }
