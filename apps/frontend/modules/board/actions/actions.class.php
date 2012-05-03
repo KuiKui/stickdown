@@ -30,7 +30,7 @@ class boardActions extends sfActions
     {
       if($this->currentBoard)
       {
-        $this->stuffs = StuffPeer::getStuffsByBoard($this->currentBoard->getId());
+        $this->stuffs = $this->getStuffsFromBoard($this->currentBoard->getId());
         $this->hasDetails = $this->hasDetails($this->stuffs);
       }
     }
@@ -45,18 +45,39 @@ class boardActions extends sfActions
       {
         if($this->currentBoard)
         {
-          $this->stuffs = StuffPeer::getStuffsByBoard($this->currentBoard->getId());
+          $this->stuffs = $this->getStuffsFromBoard($this->currentBoard->getId());
           $this->hasDetails = $this->hasDetails($this->stuffs);
         }
       }
     }
   }
 
+  public function getStuffsFromBoard($boardId)
+  {
+    $preparedStuffs = array();
+    $stuffs = StuffPeer::getStuffsByBoard($boardId);
+
+    foreach($stuffs as $stuff)
+    {
+      $preparedStuffs[] = array(
+        'id' => $stuff->getId(),
+        'content' => $stuff->getContent(),
+        'details' => $stuff->getDetails(),
+        'date' => $stuff->getCreatedAt('d/m/Y H:i'),
+        'isStarred' => $stuff->getStarred(),
+        'isChecked' => $stuff->getChecked(),
+        'isUrl' => preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $stuff->getContent())
+      );
+    }
+
+    return $preparedStuffs;
+  }
+
   public function hasDetails($stuffs)
   {
     foreach($stuffs as $stuff)
     {
-      if($stuff->getDetails())
+      if($stuff['details'])
       {
         return true;
       }

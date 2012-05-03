@@ -13,13 +13,13 @@
           <thead><tr><th></th><th></th><th></th><th id="stuff">Stuff</th><?php if($hasDetails): ?><th id="details">Details</th><?php endif; ?><th id="date">Date</th><th></th></tr></thead>
           <tbody id="stuffs">
             <?php foreach($stuffs as $stuff): ?>
-            <tr id="stuff-<?php echo $stuff->getId()?>" class="<?php if($stuff->getStarred()) echo "starred"?> <?php if($stuff->getChecked()) echo "checked"?>">
+            <tr id="stuff-<?php echo $stuff['id']?>" class="<?php if($stuff['isStarred']) echo "starred"?> <?php if($stuff['isChecked']) echo "checked"?>">
               <td class="drag" title="Move stuff"></td>
               <td class="check"></td>
               <td class="star"></td>
-              <td class="content" contenteditable="true"><?php echo link_to_if(preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $stuff->getContent()), $stuff->getContent(), $stuff->getContent());?></td>
-              <?php if($hasDetails): ?><td><?php echo $stuff->getDetails() ?></td><?php endif; ?>
-              <td><?php echo $stuff->getCreatedAt('d/m/Y H:i') ?></td>
+              <td class="content" <? if(!$stuff['isUrl']): ?>contenteditable="true"<?php endif; ?>><?php echo link_to_if($stuff['isUrl'], $stuff['content'], $stuff['content'], $stuff['content']);?></td>
+              <?php if($hasDetails): ?><td><?php echo $stuff->details() ?></td><?php endif; ?>
+              <td><?php echo $stuff['date'] ?></td>
               <td class="delete" title="Delete stuff"></td>
             </tr>
             <?php endforeach; ?>
