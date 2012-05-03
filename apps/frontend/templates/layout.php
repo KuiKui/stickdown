@@ -25,7 +25,7 @@
     <div id="footer">
       <div class="container">
         <div class="row">
-          <div class="span12">by <a title="Follow us on Twitter" href="http://twitter.com/dondouny">@dondouny</a> - <a title="Follow us on Twitter" href="http://twitter.com/spocky12">@spocky12</a> &raquo; <a href="/pages/terms-of-service" title="Terms of service">Terms of service</a> - <a href="/pages/privacy-policy" title="Privacy policy">Privacy policy</a></div>
+          <div class="span12">by <a title="Follow Denis Roussel on Twitter" href="http://twitter.com/dondouny">Denis Roussel</a> - <a title="Follow Mickaël Despesse on Twitter" href="http://twitter.com/spocky12">Mickaël Despesse</a> &raquo; <a href="/pages/terms-of-service" title="Terms of service">Terms of service</a> - <a href="/pages/privacy-policy" title="Privacy policy">Privacy policy</a></div>
         </div>
       </div>
     </div>
