@@ -18,7 +18,7 @@
               <td class="check"></td>
               <td class="star"></td>
               <td class="content" <? if(!$stuff['isUrl']): ?>contenteditable="true"<?php endif; ?>><?php echo link_to_if($stuff['isUrl'], $stuff['content'], $stuff['content'], $stuff['content']);?></td>
-              <?php if($hasDetails): ?><td><?php echo $stuff->details() ?></td><?php endif; ?>
+              <?php if($hasDetails): ?><td><?php echo $stuff['details'] ?></td><?php endif; ?>
               <td><?php echo $stuff['date'] ?></td>
               <td class="delete" title="Delete stuff"></td>
             </tr>
